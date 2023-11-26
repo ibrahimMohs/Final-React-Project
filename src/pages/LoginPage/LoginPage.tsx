@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useNavigate, Link } from "react-router-dom";
 import "./LoginPage.scss";
+import background from '../../assets/images/loginphoto.jpg';
 
 const GoogleSignIn = () => {
   const [rememberMe, setRememberMe] = useState(false);
@@ -26,23 +27,28 @@ const GoogleSignIn = () => {
   };
   return (
     <>
+    <div className="main">
+
+    
+    <img src={background} alt="" className="background"/>
+    <div className="allofdiv">
       <div className="login-page">
+      <h1>WELCOME MOVIES WEBSITE </h1>
         <div className="container">
           <form>
             <label className="email">
               Email
-              <input type="text" />
+              <input className="email" type="text" />
             </label>
             <label className="email">
               Password
-              <input type="password" />
+              <input className="email" type="password" />
             </label>
             <div>
               <button>Sign In</button>
             </div>
           </form>
         </div>
-      </div>
       <GoogleLogin
         clientId="YOUR_CLIENT_ID.apps.googleusercontent.com"
         buttonText="Sign in with Google"
@@ -50,7 +56,7 @@ const GoogleSignIn = () => {
         onFailure={responseGoogle}
         cookiePolicy={"single_host_origin"}
         className="google-login-button"
-      />
+        />
       <div className="break">
         <hr className="hr1" />
         <p>OR</p>
@@ -63,7 +69,7 @@ const GoogleSignIn = () => {
             id="rememberMe"
             checked={rememberMe}
             onChange={(e) => setRememberMe(e.target.checked)}
-          />
+            />
           <label htmlFor="rememberMe">Remember Me</label>
         </div>
         <a href="/forgot-password">Forgot Password?</a>
@@ -73,6 +79,9 @@ const GoogleSignIn = () => {
           Don't have an account? <Link to="/RegisterPage">Register</Link>
         </p>
       </div>
+      </div>
+    </div>
+    </div>
     </>
   );
 };

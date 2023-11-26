@@ -12,7 +12,6 @@ import LoginPage from '../src/pages/LoginPage/LoginPage';
 function App() {
   return (
     <>
-      <Header />
       <Routes>
         <Route index path="/" element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
