@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
 import { useNavigate, Link } from "react-router-dom";
 import "./LoginPage.scss";
-import background from '../../assets/images/loginphoto.jpg';
+import background from '../../assets/images/background.png';
 import { User } from '../../models/user';
 
 type LoginPageProps = {
@@ -52,21 +52,46 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
   return (
     <>
       <div className="main">
-        <img src={background} alt="Login Background" className="background" />
+       <img src={background} alt="" className="background" />
         <div className="allofdiv">
           <div className="login-page">
-            <h1>WELCOME TO MOVIE WEBSITE</h1>
+            <h1>Login to Your Account </h1>
             <div className="container">
               <form onSubmit={handleLogin}>
-                <label className="input">
+                <label className="password">
                   Email
-                  <input className="textplace" name="email" type="email" required />
+                  <input
+                    className="input"
+                    placeholder="Enter your email"
+                    name="email"
+                    type="email"
+                    required
+                  />
                 </label>
                 <label className="password">
+           
                   Password
-                  <input className="textplace" name="password" type="password" required />
+                  <input
+                    className="input"
+                    placeholder="Enter your password"
+                    name="password"
+                    type="password"
+                    required
+                  />
                 </label>
-                <button type="submit">Sign In</button>
+              <div className="rem-forg">
+                 <div className="checkbox">
+                         <input
+                      type="checkbox"
+                      
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                    />
+                  <label htmlFor="rememberMe">Remember Me</label>
+                 </div>
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </div>
+                <button type="submit" className="button">Sign In</button>
               </form>
             </div>
             <GoogleLogin
@@ -82,16 +107,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
               <p>OR</p>
               <hr className="hr2" />
             </div>
-            <div className="remember-forgotpassw">
-              <input
-                type="checkbox"
-                id="rememberMe"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-              />
-              <label htmlFor="rememberMe">Remember Me</label>
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </div>
+            
             <div className="login-footer">
               <p>
                 Don't have an account? <Link to="/RegisterPage">Register</Link>
