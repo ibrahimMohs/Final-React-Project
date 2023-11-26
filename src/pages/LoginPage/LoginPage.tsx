@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
 import { useNavigate, Link } from "react-router-dom";
 import "./LoginPage.scss";
 import background from '../../assets/images/loginphoto.jpg';
@@ -8,64 +8,65 @@ import { User } from '../../models/user';
 type LoginPageProps = {
   logInHandler: (user: User) => void;
 };
-const handleLoginButtonClick = () => {
-  // later user info will be received from the backend
-  const user: User = {
-    login: "Admin",
-    name: "userName",
-  };
-  props.logInHandler(user);
-};
- 
 
-const GoogleSignIn = () => {
+const LoginPage: React.FC<LoginPageProps> = (props) => {
   const [rememberMe, setRememberMe] = useState(false);
-
   const navigate = useNavigate();
+
+  const handleLoginButtonClick = () => {
+
+    const user: User = {
+      login: "Admin@gmail.com",
+      name: "userName",
+    };
+    props.logInHandler(user);
+  };
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
 
     let token = "server response token here";
 
-    if (rememberMe) {
-      localStorage.setItem("authToken", token);
-    } else {
-      sessionStorage.setItem("authToken", token);
+    if (token) { 
+      if (rememberMe) {
+        localStorage.setItem("authToken", token);
+      } else {
+        sessionStorage.setItem("authToken", token);
+      }
+      navigate("/dashboard");
     }
   };
 
-  const responseGoogle = (response: any) => {
-    console.log(response);
-    navigate("/dashboard");
-    
+  const responseGoogle = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    if ('profileObj' in response) { 
+      console.log(response);
+      const user: User = {
+        login: response.profileObj.email,
+        name: response.profileObj.name,
+      };
+      props.logInHandler(user);
+      navigate("/dashboard");
+    }
   };
 
   return (
     <>
       <div className="main">
-        <img src={background} alt="" className="background" />
+        <img src={background} alt="Login Background" className="background" />
         <div className="allofdiv">
           <div className="login-page">
-            <h1>WELCOME MOVIES WEBSITE </h1>
+            <h1>WELCOME TO MOVIE WEBSITE</h1>
             <div className="container">
-              <form>
+              <form onSubmit={handleLogin}>
                 <label className="input">
                   Email
-                  <div>
-                    <input className="textplace" type="text" />{" "}
-                  </div>
+                  <input className="textplace" name="email" type="email" required />
                 </label>
-                <label className="email">
+                <label className="password">
                   Password
-                  <div>
-                    {" "}
-                    <input className="textplace" type="password" />{" "}
-                  </div>
+                  <input className="textplace" name="password" type="password" required />
                 </label>
-                <div>
-                  <button type="button" onClick={handleLoginButtonClick}>Sign In</button>
-                </div>
+                <button type="submit">Sign In</button>
               </form>
             </div>
             <GoogleLogin
@@ -82,16 +83,14 @@ const GoogleSignIn = () => {
               <hr className="hr2" />
             </div>
             <div className="remember-forgotpassw">
-              <div>
-                <input
-                  type="checkbox"
-                  id="rememberMe"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                />
-                <label htmlFor="rememberMe">Remember Me</label>
-              </div>
-              <a href="/forgot-password">Forgot Password?</a>
+              <input
+                type="checkbox"
+                id="rememberMe"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <label htmlFor="rememberMe">Remember Me</label>
+              <Link to="/forgot-password">Forgot Password?</Link>
             </div>
             <div className="login-footer">
               <p>
@@ -105,4 +104,4 @@ const GoogleSignIn = () => {
   );
 };
 
-export default GoogleSignIn;
+export default LoginPage;
