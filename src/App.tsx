@@ -1,10 +1,11 @@
 import { useState} from 'react';
 import './App.css';
 import { HomePage } from './pages/HomePage/HomePage';
-import { Route, Routes } from 'react-router-dom';
+// import { Route, Routes } from 'react-router-dom';
 import { Header } from 'antd/es/layout/layout';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NotFoundPage } from './pages/HomePage/NotFoundPage/NotFoundPage';
-import { LoginPage } from './pages/LoginPage/LoginPage';
+import LoginPage from '../src/pages/LoginPage/LoginPage';
 
 
 
