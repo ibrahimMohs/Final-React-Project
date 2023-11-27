@@ -33,7 +33,12 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
       } else {
         sessionStorage.setItem("authToken", token);
       }
-      navigate("/dashboard");
+      const user: User = {
+        login: "Admin@gmail.com",
+        name: "userName",
+      };
+      props.logInHandler(user);
+      navigate("/");
     }
   };
 
@@ -45,7 +50,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
         name: response.profileObj.name,
       };
       props.logInHandler(user);
-      navigate("/dashboard");
+      navigate("/");
     }
   };
 

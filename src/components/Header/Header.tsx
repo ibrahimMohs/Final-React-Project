@@ -9,6 +9,7 @@ type HeaderProps = {
     return (
       <header>
         <div className="container">
+          header works
           <nav>
             {props.userInfo ? (
               <>
