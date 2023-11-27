@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
 import { useNavigate, Link } from "react-router-dom";
 import "./LoginPage.scss";
-import background from '../../assets/images/background.png';
+import background from '../../assets/images/mainphot.jpg';
 import { User } from '../../models/user';
 
 type LoginPageProps = {
@@ -55,7 +55,8 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
        <img src={background} alt="" className="background" />
         <div className="allofdiv">
           <div className="login-page">
-            <h1>Login to Your Account </h1>
+            <h1>WELCOME MOVIES WEBSITE</h1>
+            <h2>Login to Your Account </h2>
             <div className="container">
               <form onSubmit={handleLogin}>
                 <label className="password">
