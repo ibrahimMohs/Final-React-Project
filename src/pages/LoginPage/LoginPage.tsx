@@ -56,12 +56,13 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
 
   return (
     <>
+
       <div className="main">
        <img src={background} alt="" className="background" />
-        <div className="allofdiv">
+        <div className="all-of-div">
           <div className="login-page">
             <h1>WELCOME TO THE <br/>MOVIES WEBSITE</h1>
-            <h2>Login to Your Account </h2>
+            <h2>Login  </h2>
             <div className="container">
               <form onSubmit={handleLogin}>
                 <label className="password">
