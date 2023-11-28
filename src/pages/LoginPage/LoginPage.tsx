@@ -61,7 +61,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
        <img src={background} alt="" className="background" />
         <div className="all-of-div">
           <div className="login-page">
-            <h1>WELCOME TO THE <br/>MOVIES WEBSITE</h1>
+            <h1>WELCOME TO <br/> BEST MOVIES </h1>
             <h2>Login  </h2>
             <div className="container">
               <form onSubmit={handleLogin}>
@@ -94,9 +94,9 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
                     />
-                  <label htmlFor="rememberMe">Remember Me</label>
+                  <label className="remember-me" htmlFor="rememberMe">Remember Me</label>
                  </div>
-                <Link to="/forgot-password">Forgot Password?</Link>
+                <Link className="forgot-password" to="/forgot-password">Forgot Password?</Link>
               </div>
                 <button type="submit" className="button">Sign In</button>
               </form>

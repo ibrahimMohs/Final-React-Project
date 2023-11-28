@@ -35,7 +35,9 @@
     cursor: pointer;
     margin-left: 10px; 
 }
-
+.icon:hover{
+    background-color:black;
+}
 .search-input {
     margin-left: 10px;
 }
@@ -61,13 +63,15 @@
 .header-logo{
 
     img{
-        width: 120px;
+        width: 100px;
         height: 60px;
         margin-left: 30px;
+        border-radius: 100px;
     }
 }
 
 .header {
+    background-color: darkblue;
 
   
     .header-drawer-button {

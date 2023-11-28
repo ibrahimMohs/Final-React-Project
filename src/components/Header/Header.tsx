@@ -4,7 +4,7 @@ import {User} from '../../models/user';
 import { Menu, Input, Badge, Button, Drawer } from 'antd';
 import { MenuOutlined, SearchOutlined, BellOutlined } from '@ant-design/icons';
 import './Header.scss'; 
-import logo from '../../assets/images/icon4.jpg'; 
+import logo from '../../assets/images/icon.jpg'; 
 
 interface MenuItem {
   key: string;
