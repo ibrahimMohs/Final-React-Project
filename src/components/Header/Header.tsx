@@ -106,10 +106,29 @@ type HeaderProps = {
         </nav>
       ) : (
         <>
-          {/* <div className="header-login-signup">
-            <button onClick={handleLogin}>Login</button>
-            <button onClick={handleSignup}>Sign Up</button>
-          </div> */}
+<nav>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} onClick={handleMenuClick} className="header-menu">
+            {menuItems.map(item => (
+              <Menu.Item key={item.key}>{item.label}</Menu.Item>
+            ))}
+          </Menu>
+  
+          <div className="header-tools">
+            {searchActive && (
+              <Input
+                placeholder="Search"
+                onPressEnter={(e) => onSearch(e.currentTarget.value)}
+                onBlur={() => setSearchActive(false)}
+                autoFocus
+              />
+            )}
+            <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
+            <Badge count={notificationCount}>
+              <BellOutlined className="icon notification-icon" />
+            </Badge>
+
+          </div>
+        </nav>
         </>
       )}
     </header>
