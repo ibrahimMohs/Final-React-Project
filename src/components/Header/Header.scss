@@ -12,6 +12,12 @@
     justify-content: center;
 }
 
+.header nav,
+.header-menu  {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
 .nav-link {
     color: white;
     padding: 10px;
@@ -110,4 +116,8 @@ nav{
         display: flex;
 
     }
+}
+
+main{
+    padding: 0px !important;
 }

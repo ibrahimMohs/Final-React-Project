@@ -41,10 +41,10 @@ function App() {
           <Content style={{ padding: '50px' }}></Content>
           <Routes>
           <Route path="/" element={<Home />} />
-            <Route path="/movies-shows" element={<MoviesShows />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/subscriptions" element={<Subscriptions />} />
-            <Route path="/login-register" element={<LoginPage logInHandler={handleLogIn} />} />
+            <Route path="movies-shows" element={<MoviesShows />} />
+            <Route path="support" element={<Support />} />
+            <Route path="subscriptions" element={<Subscriptions />} />
+            <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
@@ -54,7 +54,7 @@ function App() {
           
           <Routes>
             <Route path="/" element={<LoginPage logInHandler={handleLogIn} />} />
-            <Route path="login" element={<LoginPage logInHandler={handleLogIn} />} />
+            <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           
