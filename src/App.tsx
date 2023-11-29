@@ -10,6 +10,7 @@ import { Layout } from 'antd';
 import {Header} from '../src/components/Header/Header'; 
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import LoginPage from '../src/pages/LoginPage/LoginPage';
+import { CarouselPage } from './components/CarouselPage/CarouselPage';
 
 const { Content, Footer } = Layout;
 
@@ -40,13 +41,14 @@ function App() {
 
           <Content style={{ padding: '50px' }}></Content>
           <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
             <Route path="movies-shows" element={<MoviesShows />} />
             <Route path="support" element={<Support />} />
             <Route path="subscriptions" element={<Subscriptions />} />
             <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+          <CarouselPage/>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
       </Layout>
           </>
