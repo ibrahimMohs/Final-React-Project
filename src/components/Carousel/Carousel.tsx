@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { Carousel } from "antd";
 import { Movies } from "../../models/CarouselObject";
-import "./CarouselPage.scss";
+import "./Carousel.scss";
 import { CarouselRef } from "antd/es/carousel";
 
 interface Movies {
@@ -16,7 +16,7 @@ interface Movies {
 interface ArrayProps {
   items: Movies[];
 }
-export const CarouselPage: React.FC = () => {
+export const CarouselCustom: React.FC = () => {
   const carouselRef = React.createRef<CarouselRef>();
   const carouselWrapperRef = React.createRef<HTMLDivElement>();
 

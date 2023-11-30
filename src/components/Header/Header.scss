@@ -16,6 +16,7 @@
 .header-menu  {
     flex-grow: 1;
     flex-shrink: 0;
+    justify-content: center;
 }
 
 .nav-link {
@@ -42,7 +43,7 @@
     margin-left: 10px; 
 }
 .icon:hover{
-    background-color:black;
+    background-color:violet;
 }
 .search-input {
     margin-left: 10px;
@@ -72,12 +73,12 @@
         width: 100px;
         height: 60px;
         margin-left: 30px;
-        border-radius: 100px;
+        border-radius: 150px;
     }
 }
 
 .header {
-    background-color: darkblue;
+    
 
   
     .header-drawer-button {
@@ -110,6 +111,7 @@ nav{
 
     ul{
         display: flex;
+        background: none !important;
     }
 
     .header-tools{

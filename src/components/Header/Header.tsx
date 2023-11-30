@@ -4,7 +4,7 @@ import { User } from "../../models/user";
 import { Menu, Input, Badge, Button, Drawer } from "antd";
 import { MenuOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
 import "./Header.scss";
-import logo from "../../assets/images/icon.jpg";
+import logo from "../../assets/images/loggo.jpg";
 
 interface MenuItem {
   key: string;
@@ -22,13 +22,21 @@ export const Header = (props: HeaderProps) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
 
-  const menuItems: MenuItem[] = props.userInfo ? [
-    { key: "/", label: "Home", path: "/" },
-    { key: "2", label: "Movies & Shows", path: "/movies-shows" },
-    { key: "3", label: "Support", path: "/support" },
-    { key: "4", label: "Subscriptions", path: "/subscriptions" },
-    { key: "5", label: "Log in/Register", path: "/login-register" },
-  ] : [{ key: "/", label: "Log in/Register", path: "/" }];
+  const menuItems: MenuItem[] = props.userInfo
+    ? [
+        { key: "/", label: "Home", path: "/" },
+        { key: "2", label: "Movies & Shows", path: "/movies-shows" },
+        { key: "3", label: "Support", path: "/support" },
+        { key: "4", label: "Subscriptions", path: "/subscriptions" },
+        // { key: "5", label: "Log in/Register", path: "/login-register" },
+      ]
+    : [
+        { key: "/", label: "Home", path: "/" },
+        { key: "2", label: "Movies & Shows", path: "/movies-shows" },
+        { key: "3", label: "Support", path: "/support" },
+        { key: "4", label: "Subscriptions", path: "/subscriptions" },
+        { key: "5", label: "Log in/Register", path: "/login-register" },
+      ];
 
   const onSearch = (value: string) => {
     console.log("Search:", value);
@@ -63,7 +71,7 @@ export const Header = (props: HeaderProps) => {
         placement="right"
         closable={true}
         onClose={toggleDrawer}
-        visible={drawerVisible}
+        open={drawerVisible}
       >
         {props.userInfo && (
           <Menu

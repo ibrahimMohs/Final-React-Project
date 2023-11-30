@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import "./LoginPage.scss";
 import background from '../../assets/images/mainphot.jpg';
 import { User } from '../../models/user';
+import { Button, Checkbox, Form, Input } from 'antd';
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
@@ -53,6 +54,21 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
       navigate("/");
     }
   };
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+  
+  type FieldType = {
+    username?: string;
+    password?: string;
+    remember?: string;
+  };
+  
+  
 
   return (
     <>
@@ -64,42 +80,49 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
             <h1>WELCOME TO <br/> BEST MOVIES </h1>
             <h2>Login  </h2>
             <div className="container">
-              <form onSubmit={handleLogin}>
-                <label className="password">
-                  Email
-                  <input
-                    className="input"
-                    placeholder="Enter your email"
-                    name="email"
-                    type="email"
-                    required
-                  />
-                </label>
-                <label className="password">
-           
-                  Password
-                  <input
-                    className="input"
-                    placeholder="Enter your password"
-                    name="password"
-                    type="password"
-                    required
-                  />
-                </label>
-              <div className="rem-forg">
-                 <div className="checkbox">
-                         <input
-                      type="checkbox"
-                      
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                  <label className="remember-me" htmlFor="rememberMe">Remember Me</label>
-                 </div>
-                <Link className="forgot-password" to="/forgot-password">Forgot Password?</Link>
-              </div>
-                <button type="submit" className="button">Sign In</button>
-              </form>
+            <Form
+    name="basic"
+    labelCol={{ span: 8 }}
+    wrapperCol={{ span: 16 }}
+    style={{ maxWidth: 600 }}
+    initialValues={{ remember: true }}
+    onFinish={onFinish}
+    onFinishFailed={onFinishFailed}
+    autoComplete="off"
+  >
+    <Form.Item<FieldType>
+      label="Username"
+      name="username"
+      rules={[{ required: true, message: 'Please input your username!' }
+    ]}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item<FieldType>
+      label="Password"
+      name="password"
+      rules={[{ required: true, message: 'Please input your password!' },
+      {min:8,message:'password is shorter than 8'}]}
+    >
+      <Input.Password />
+    </Form.Item>
+
+    <Form.Item<FieldType>
+      name="remember"
+      valuePropName="checked"
+      wrapperCol={{ offset: 8, span: 16 }}
+    >
+      <Checkbox>Remember me</Checkbox>
+    </Form.Item>
+
+    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+      <Button type="primary" htmlType="submit">
+        Login
+      </Button>
+    </Form.Item>
+  </Form>
+
             </div>
             <GoogleLogin
               clientId="YOUR_CLIENT_ID.apps.googleusercontent.com"
