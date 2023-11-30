@@ -40,4 +40,4 @@ const Genre = () => {
     </div>
   );
 };
-export default Genre
+export default Genre;

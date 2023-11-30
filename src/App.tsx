@@ -14,7 +14,7 @@ import Genre from "../src/components/Genre/Genre";
 const { Content, Footer } = Layout;
 
 const Home = () => <div>Home Page</div>;
-const Genre =()=> <div>Genre</div>;
+const GenreComponent =()=> <div>Genre</div>;
 const MoviesShows = () => <div>Movies & Shows Page</div>;
 const Support = () => <div>Support Page</div>;
 const Subscriptions = () => <div>Subscriptions Page</div>;
