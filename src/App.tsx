@@ -10,10 +10,11 @@ import { Layout } from "antd";
 import { Header } from "../src/components/Header/Header";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import LoginPage from "../src/pages/LoginPage/LoginPage";
-
+import Genre from "../src/components/Genre/Genre";
 const { Content, Footer } = Layout;
 
 const Home = () => <div>Home Page</div>;
+const Genre =()=> <div>Genre</div>;
 const MoviesShows = () => <div>Movies & Shows Page</div>;
 const Support = () => <div>Support Page</div>;
 const Subscriptions = () => <div>Subscriptions Page</div>;
@@ -39,6 +40,7 @@ function App() {
             <Content style={{ padding: "50px" }}></Content>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="genre" element={<Genre />} />
               <Route path="movies-shows" element={<MoviesShows />} />
               <Route path="support" element={<Support />} />
               <Route path="subscriptions" element={<Subscriptions />} />

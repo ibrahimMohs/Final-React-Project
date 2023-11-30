@@ -25,6 +25,7 @@ export const Header = (props: HeaderProps) => {
   const menuItems: MenuItem[] = props.userInfo
     ? [
         { key: "/", label: "Home", path: "/" },
+        { key: "1", label: "Genre", path: "/genre" },
         { key: "2", label: "Movies & Shows", path: "/movies-shows" },
         { key: "3", label: "Support", path: "/support" },
         { key: "4", label: "Subscriptions", path: "/subscriptions" },
@@ -32,6 +33,7 @@ export const Header = (props: HeaderProps) => {
       ]
     : [
         { key: "/", label: "Home", path: "/" },
+        { key: "1", label: "Genre", path: "/genre" },
         { key: "2", label: "Movies & Shows", path: "/movies-shows" },
         { key: "3", label: "Support", path: "/support" },
         { key: "4", label: "Subscriptions", path: "/subscriptions" },
