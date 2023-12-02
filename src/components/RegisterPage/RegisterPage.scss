@@ -1,10 +1,23 @@
-.allForms{
-    padding-top: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.ant-select-selection-item{
+.form-container {
+    display: flex;
+    justify-content: center;
+  .all-forms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 650px;
+      height: 700px;
+      border: 5px solid #0958d9;
+      padding: 50px;
+      margin: 20px;
+      background-color:lightblue;
+      font-style: oblique;
+      font-weight: bold;
+    
+  }
+
+  .ant-select-selection-item {
     padding-inline-end: 46px !important;
+  }
 }
