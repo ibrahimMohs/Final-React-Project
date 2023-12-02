@@ -40,7 +40,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; 
+        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
 
         const movieResponse = await axios.get<MovieDetailsData>(
           `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
