@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './TVShowsList.scss'; // Import your SCSS file
-import TVShowPagination from '../MovieList/MoviePagination'; // Import the TVShowPagination component
+import './TVShowsList.scss';
+import TVShowPagination from '../MovieList/MoviePagination'; 
 import axios from 'axios';
 
 interface TVShow {
@@ -9,19 +9,17 @@ interface TVShow {
   name: string;
   overview: string;
   poster_path: string;
-  // Add other TV show properties as needed
 }
 
 const TVShowsList: React.FC = () => {
   const [tvShows, setTVShows] = useState<TVShow[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [selectedTVShow, setSelectedTVShow] = useState<TVShow | null>(null); // Store selected TV show details
-
+  const [selectedTVShow, setSelectedTVShow] = useState<TVShow | null>(null); 
   useEffect(() => {
     const fetchTVShows = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; // Replace with your actual TMDB API key
+        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; 
         const response = await axios.get(
           `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`
         );
@@ -48,18 +46,17 @@ const TVShowsList: React.FC = () => {
   };
 
   const showTVShowDetails = (tvShow: TVShow) => {
-    setSelectedTVShow(tvShow); // Set selected TV show when clicked
+    setSelectedTVShow(tvShow);
   };
 
   const closeTVShowDetails = () => {
-    setSelectedTVShow(null); // Close TV show details when user clicks outside or on close button
+    setSelectedTVShow(null); 
   };
 
   return (
     <div className="tv-shows-list">
       <h1>TV Shows</h1>
 
-      {/* Pagination at the top */}
       <TVShowPagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -77,7 +74,6 @@ const TVShowsList: React.FC = () => {
         ))}
       </div>
 
-      {/* TV show details section */}
       {selectedTVShow && (
         <div className="tv-show-details">
           <div className="details-content">
@@ -85,12 +81,10 @@ const TVShowsList: React.FC = () => {
             <h2>{selectedTVShow.name}</h2>
             <img src={`https://image.tmdb.org/t/p/w500/${selectedTVShow.poster_path}`} alt={selectedTVShow.name} />
             <p>{selectedTVShow.overview}</p>
-            {/* Display other TV show details as needed */}
           </div>
         </div>
       )}
 
-      {/* Pagination at the bottom */}
       <TVShowPagination
         currentPage={currentPage}
         totalPages={totalPages}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './MovieList.scss'; // Import your SCSS file
-import MoviePagination from './MoviePagination'; // Import the MoviePagination component
+import './MovieList.scss'; 
+import MoviePagination from './MoviePagination'; 
 import axios from 'axios';
 
 interface Movie {
@@ -9,19 +9,18 @@ interface Movie {
   title: string;
   overview: string;
   poster_path: string;
-  // Add other movie properties as needed
 }
 
 const MovieList: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null); // Store selected movie details
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; // Replace with your actual TMDB API key
+        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
         const response = await axios.get(
           `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`
         );
@@ -48,18 +47,17 @@ const MovieList: React.FC = () => {
   };
 
   const showMovieDetails = (movie: Movie) => {
-    setSelectedMovie(movie); // Set selected movie when clicked
+    setSelectedMovie(movie);
   };
 
   const closeMovieDetails = () => {
-    setSelectedMovie(null); // Close movie details when user clicks outside or on close button
+    setSelectedMovie(null);
   };
 
   return (
     <div className="movie-list">
       <h1>Movies</h1>
 
-      {/* Pagination at the top */}
       <MoviePagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -77,7 +75,6 @@ const MovieList: React.FC = () => {
         ))}
       </div>
 
-      {/* Movie details section */}
       {selectedMovie && (
         <div className="movie-details">
           <div className="details-content">
@@ -85,12 +82,10 @@ const MovieList: React.FC = () => {
             <h2>{selectedMovie.title}</h2>
             <img src={`https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`} alt={selectedMovie.title} />
             <p>{selectedMovie.overview}</p>
-            {/* Display other movie details as needed */}
           </div>
         </div>
       )}
 
-      {/* Pagination at the bottom */}
       <MoviePagination
         currentPage={currentPage}
         totalPages={totalPages}

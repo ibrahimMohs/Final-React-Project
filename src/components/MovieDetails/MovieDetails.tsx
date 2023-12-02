@@ -40,27 +40,23 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; // Replace with your actual TMDB API key
+        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; 
 
-        // Fetching basic movie details
         const movieResponse = await axios.get<MovieDetailsData>(
           `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
         );
         const basicDetails = movieResponse.data;
 
-        // Fetching movie cast
         const castResponse = await axios.get<{ cast: CastMember[] }>(
           `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
         );
         const cast = castResponse.data.cast;
 
-        // Fetching movie trailers
         const videosResponse = await axios.get<{ results: Trailer[] }>(
           `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`
         );
         const trailers = videosResponse.data.results.filter((video: any) => video.type === 'Trailer');
 
-        // Fetching additional movie details (Rating, Countries, Directors, Writers)
         const movieDetailsResponse = await axios.get(
           `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=credits`
         );

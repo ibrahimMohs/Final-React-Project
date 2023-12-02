@@ -58,7 +58,7 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
           overview: basicDetails.overview,
           poster_path: basicDetails.poster_path,
           genres: basicDetails.genres,
-          rating: basicDetails.rating, // Assuming rating is directly available in basicDetails
+          rating: basicDetails.rating,
           country: details.origin_country,
           directors: credits.crew.filter((member: any) => member.job === 'Director'),
           writers: credits.crew.filter((member: any) => member.department === 'Writing')
@@ -147,7 +147,6 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
             ))}
           </div>
 
-          {/* Add more details as needed */}
         </div>
       ) : (
         <p>Loading...</p>
