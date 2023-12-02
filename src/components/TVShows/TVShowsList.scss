@@ -1,0 +1,36 @@
+// /* MovieList.scss */
+
+.tv-shows-list {
+    /* Your existing styles for the movie list container */
+    /* ... */
+  }
+  
+  .tv-show-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five movies per row */
+    gap: 14px; /* Adjust the gap between movies */
+  }
+  
+  .tv-show-item {
+    width: 100%; /* Take full width of each column */
+    box-sizing: border-box; /* Ensure padding and borders are included in the width */
+  
+    /* Movie poster styles */
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px; /* Add border radius or other styles */
+      cursor: pointer;
+    }
+  
+    /* Movie details */
+    p {
+      width: 100%;
+      font-size: 14px; /* Adjust overview font size */
+      color: #555; /* Adjust text color */
+      margin-top: 10px; /* Adjust space between poster and details */
+    }
+  }
+  
+  /* Other styles as needed */
+  

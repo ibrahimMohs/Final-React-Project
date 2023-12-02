@@ -26,18 +26,20 @@ export const Header = (props: HeaderProps) => {
     ? [
         { key: "/", label: "Home", path: "/" },
         { key: "1", label: "Genre", path: "/genre" },
-        { key: "2", label: "Movies & Shows", path: "/movies-shows" },
-        { key: "3", label: "Support", path: "/support" },
-        { key: "4", label: "Subscriptions", path: "/subscriptions" },
+        { key: '2', label: 'Movies', path: '/movies' },
+        { key: '3', label: 'TV Shows', path: '/tv-shows' },
+        { key: "4", label: "Support", path: "/support" },
+        { key: "5", label: "Subscriptions", path: "/subscriptions" },
         // { key: "5", label: "Log in/Register", path: "/login-register" },
       ]
     : [
         { key: "/", label: "Home", path: "/" },
         { key: "1", label: "Genre", path: "/genre" },
-        { key: "2", label: "Movies & Shows", path: "/movies-shows" },
-        { key: "3", label: "Support", path: "/support" },
-        { key: "4", label: "Subscriptions", path: "/subscriptions" },
-        { key: "5", label: "Log in/Register", path: "/login-register" },
+        { key: '2', label: 'Movies', path: '/movies' },
+        { key: '3', label: 'TV Shows', path: '/tv-shows' },
+        { key: "4", label: "Support", path: "/support" },
+        { key: "5", label: "Subscriptions", path: "/subscriptions" },
+        { key: "6", label: "Log in/Register", path: "/login-register" },
       ];
 
   const onSearch = (value: string) => {
