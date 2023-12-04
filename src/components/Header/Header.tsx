@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../models/user";
 import { Menu, Input, Badge, Button, Drawer } from "antd";
+import type { MenuProps } from "antd";
 import { MenuOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
 import "./Header.scss";
 import logo from "../../assets/images/loggo.jpg";
@@ -22,24 +23,57 @@ export const Header = (props: HeaderProps) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
 
-  const menuItems: MenuItem[] = props.userInfo
+  const menuItems: MenuProps["items"] = props.userInfo
     ? [
-        { key: "/", label: "Home", path: "/" },
-        { key: "1", label: "Genre", path: "/genre" },
-        { key: '2', label: 'Movies', path: '/movies' },
-        { key: '3', label: 'TV Shows', path: '/tv-shows' },
-        { key: "4", label: "Support", path: "/support" },
-        { key: "5", label: "Subscriptions", path: "/subscriptions" },
+        { key: "/", label: "Home" },
+        {
+          key: "SubMenu",
+          label: "Genre",
+          children: [
+            {
+              type: "group",
+              label: "Item 1",
+              children: [
+                {
+                  label: "Option 1",
+                  key: "setting:1",
+                },
+                {
+                  label: "Option 2",
+                  key: "setting:2",
+                },
+              ],
+            },
+            {
+              type: "group",
+              label: "Item 2",
+              children: [
+                {
+                  label: "Option 3",
+                  key: "setting:3",
+                },
+                {
+                  label: "Option 4",
+                  key: "setting:4",
+                },
+              ],
+            },
+          ],
+        },
+        { key: "/movies", label: "Movies" },
+        { key: "/tv-shows", label: "TV Shows" },
+        { key: "/support", label: "Support" },
+        { key: "/subscriptions", label: "Subscriptions" },
         // { key: "5", label: "Log in/Register", path: "/login-register" },
       ]
     : [
-        { key: "/", label: "Home", path: "/" },
-        { key: "1", label: "Genre", path: "/genre" },
-        { key: '2', label: 'Movies', path: '/movies' },
-        { key: '3', label: 'TV Shows', path: '/tv-shows' },
-        { key: "4", label: "Support", path: "/support" },
-        { key: "5", label: "Subscriptions", path: "/subscriptions" },
-        { key: "6", label: "Log in/Register", path: "/login-register" },
+        { key: "/", label: "Home" },
+        { key: "SubMenu", label: "Genre" },
+        { key: "/movies", label: "Movies" },
+        { key: " /tv-shows", label: "TV Shows" },
+        { key: "/support", label: "Support" },
+        { key: "/subscriptions", label: "Subscriptions" },
+        { key: "/login-register", label: "Log in/Register" },
       ];
 
   const onSearch = (value: string) => {
