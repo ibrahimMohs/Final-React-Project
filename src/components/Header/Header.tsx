@@ -68,7 +68,7 @@ export const Header = (props: HeaderProps) => {
       ]
     : [
         { key: "/", label: "Home" },
-        { key: "SubMenu", label: "Genre" },
+        { key: "/genre", label: "Genre" },
         { key: "/movies", label: "Movies" },
         { key: " /tv-shows", label: "TV Shows" },
         { key: "/support", label: "Support" },
@@ -88,9 +88,9 @@ export const Header = (props: HeaderProps) => {
   };
 
   const handleMenuClick = (e: any) => {
-    const menuItem = menuItems.find((item) => item.key === e.key);
+    const menuItem = menuItems.find((item: any) => item.key === e.key);
     if (menuItem) {
-      navigate(menuItem.path);
+      navigate(menuItem.key!);
     }
   };
 
