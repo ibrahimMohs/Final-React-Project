@@ -16,7 +16,7 @@ import MovieDetails from "./components/MovieDetails/MovieDetails";
 import TVShowsList from "./components/TVShows/TVShowsList";
 import TVShowsDetail from "./components/TVShowsDetails/TVShowsDetail";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
-import CastDetails from './components/CastDetails-For-Movies/CastDetails';
+import CastDetails from './components/CastDetails/CastDetails';
 const { Content, Footer } = Layout;
 
 const Home = () => <div>Home Page</div>;
@@ -50,7 +50,7 @@ function App() {
               <Route path="genre" element={<Genre />} />
               <Route path="/movies" element={<MovieList />} />
               <Route path="/movies/:movieId" element={<MovieDetails />} />
-              <Route path="/cast/:castId" element={<CastDetails castId={"0"} />} />
+              <Route path="/cast/:castId" element={<CastDetails />} />
               <Route path="/tv-shows" element={<TVShowsList />} />
               <Route path="/tv-shows/:tvShowId" element={<TVShowsDetail />} />
               <Route path="support" element={<Support />} />
@@ -73,7 +73,7 @@ function App() {
           <Route path="genre" element={<Genre />} />
           <Route path="/movies" element={<MovieList />} />
           <Route path="/movies/:movieId" element={<MovieDetails />} />
-          <Route path="/cast/:castId" element={<CastDetails castId={"0"} />} />
+          <Route path="/cast/:castId" element={<CastDetails />} />
           <Route path="/tv-shows" element={<TVShowsList />} />
           <Route path="/tv-shows/:tvShowId" element={<TVShowsDetail />} />
           <Route path="support" element={<Support />} />

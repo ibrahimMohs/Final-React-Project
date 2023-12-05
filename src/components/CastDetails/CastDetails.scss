@@ -1,0 +1,10 @@
+.moviesList, .tvShowsList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    img{
+        width: 90%;
+        height: 80%;
+    }
+}

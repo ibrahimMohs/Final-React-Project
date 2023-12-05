@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import CastDetails from '../CastDetails/CastDetails';
 
 interface TVShowDetailsProps {}
 
@@ -137,16 +138,21 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
           <div className="cast-list">
             {cast.map(member => (
               <div key={member.id} className="cast-item">
-                {member.profile_path ? (
-                  <img src={`https://image.tmdb.org/t/p/w200/${member.profile_path}`} alt={member.name} />
-                ) : (
-                  <div className="no-image">No Image Available</div>
-                )}
-                <p>{member.name} as {member.character}</p>
+                <Link to={`/cast/${member.id}`}>
+                  <div>
+                    {member.profile_path ? (
+                      <img src={`https://image.tmdb.org/t/p/w200/${member.profile_path}`} alt={member.name} />
+                    ) : (
+                      <div className="no-image">No Image Available</div>
+                    )}
+                    <p>
+                      {member.name} as {member.character}
+                    </p>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
-
         </div>
       ) : (
         <p>Loading...</p>

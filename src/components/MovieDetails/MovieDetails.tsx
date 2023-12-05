@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import CastDetails from '../CastDetails-For-Movies/CastDetails';
+import CastDetails from '../CastDetails/CastDetails';
 import '../MovieDetails/MovieDetails.scss';
 
 interface MovieDetailsProps {}
@@ -166,7 +166,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
               </div>
             ))}
           </div>
-          {selectedCastId && <CastDetails castId={selectedCastId.toString()} />}
         </div>
       ) : (
         <p>Loading...</p>
