@@ -2,6 +2,7 @@
 .form-container {
     display: flex;
     justify-content: center;
+    
   .all-forms {
       display: flex;
       align-items: center;
@@ -14,10 +15,17 @@
       background-color:lightblue;
       font-style: oblique;
       font-weight: bold;
+      font-size: 25px !important;
+      border-radius: 50px;
     
   }
 
   .ant-select-selection-item {
     padding-inline-end: 46px !important;
   }
+}
+
+.register-background{
+  position: absolute;
+  opacity: 20%;
 }

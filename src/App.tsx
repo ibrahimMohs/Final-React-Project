@@ -71,11 +71,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="genre" element={<Genre />} />
-          <Route path="/movies" element={<MovieList />} />
-          <Route path="/movies/:movieId" element={<MovieDetails />} />
-          <Route path="/cast/:castId" element={<CastDetails />} />
-          <Route path="/tv-shows" element={<TVShowsList />} />
-          <Route path="/tv-shows/:tvShowId" element={<TVShowsDetail />} />
+          <Route path="movies" element={<MovieList />} />
+          <Route path="movies/:movieId" element={<MovieDetails />} />
+          <Route path="cast/:castId" element={<CastDetails />} />
+          <Route path="tv-shows" element={<TVShowsList />} />
+          <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
           <Route path="support" element={<Support />} />
           <Route path="subscriptions" element={<Subscriptions />} />
           <Route

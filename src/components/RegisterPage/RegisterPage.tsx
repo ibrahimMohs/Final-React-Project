@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { CascaderProps } from "antd";
 import "../RegisterPage/RegisterPage.scss";
+import background from "../../assets/images/backgroundimg.jpg";
 import {
   AutoComplete,
   Button,
@@ -22,40 +23,6 @@ interface DataNodeType {
   children?: DataNodeType[];
 }
 
-const residences: CascaderProps<DataNodeType>["options"] = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
 
 const formItemLayout = {
   labelCol: {
@@ -127,6 +94,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="form-container">
+      <img className="register-background" src={background} alt="" />
       <div className="all-forms">
         <Form
           {...formItemLayout}
@@ -209,20 +177,6 @@ const Register: React.FC = () => {
             ]}
           >
             <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="residence"
-            label="Habitual Residence"
-            rules={[
-              {
-                type: "array",
-                required: true,
-                message: "Please select your habitual residence!",
-              },
-            ]}
-          >
-            <Cascader options={residences} />
           </Form.Item>
 
           <Form.Item
