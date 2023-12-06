@@ -90,7 +90,7 @@ export const Header = (props: HeaderProps) => {
   const handleMenuClick = (e: any) => {
     const menuItem = menuItems.find((item: any) => item.key === e.key);
     if (menuItem) {
-      navigate(menuItem.key!);
+      //navigate(menuItem.key!);
     }
   };
 
@@ -118,8 +118,8 @@ export const Header = (props: HeaderProps) => {
             defaultSelectedKeys={["/"]}
             onClick={handleMenuClick}
           >
-            {menuItems.map((item) => (
-              <Menu.Item key={item.key}>{item.label}</Menu.Item>
+            {menuItems.map((item) => ( <></>
+             // <Menu.Item key={item.key}>{item.label}</Menu.Item>
             ))}
           </Menu>
         )}
@@ -134,8 +134,8 @@ export const Header = (props: HeaderProps) => {
             onClick={handleMenuClick}
             className="header-menu"
           >
-            {menuItems.map((item) => (
-              <Menu.Item key={item.key}>{item.label}</Menu.Item>
+            {menuItems.map((item) => (<></>
+             // <Menu.Item key={item.key}>{item.label}</Menu.Item>
             ))}
           </Menu>
 
@@ -167,8 +167,8 @@ export const Header = (props: HeaderProps) => {
               onClick={handleMenuClick}
               className="header-menu"
             >
-              {menuItems.map((item) => (
-                <Menu.Item key={item.key}>{item.label}</Menu.Item>
+              {menuItems.map((item) => (<></>
+             //   <Menu.Item key={item.key}>{item.label}</Menu.Item>
               ))}
             </Menu>
 
