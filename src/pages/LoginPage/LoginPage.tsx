@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import {
-  GoogleLogin,
-  GoogleLoginResponse,
-  GoogleLoginResponseOffline,
-} from "react-google-login";
-import { useNavigate, Link } from "react-router-dom";
-import "./LoginPage.scss";
-import background from "../../assets/images/mainphot.jpg";
-import { User } from "../../models/user";
-import { Button, Checkbox, Form, Input } from "antd";
+import React, { useState } from 'react';
+// import {
+//   GoogleLogin,
+//   GoogleLoginResponse,
+//   GoogleLoginResponseOffline,
+// } from "react-google-login";
+import './LoginPage.scss';
+import { Button, Checkbox, Form, Input } from 'antd';
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from '@leecheuk/react-google-login';
+import { Link, useNavigate } from 'react-router-dom';
+import { User } from '../../models/user';
+import background from '../../assets/images/mainphot.jpg';
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
@@ -20,8 +21,8 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
 
   const handleLoginButtonClick = () => {
     const user: User = {
-      login: "Admin@gmail.com",
-      name: "userName",
+      login: 'Admin@gmail.com',
+      name: 'userName',
     };
     props.logInHandler(user);
   };
@@ -29,42 +30,40 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    let token = "server response token here";
+    let token = 'server response token here';
 
     if (token) {
       if (rememberMe) {
-        localStorage.setItem("authToken", token);
+        localStorage.setItem('authToken', token);
       } else {
-        sessionStorage.setItem("authToken", token);
+        sessionStorage.setItem('authToken', token);
       }
       const user: User = {
-        login: "Admin@gmail.com",
-        name: "userName",
+        login: 'Admin@gmail.com',
+        name: 'userName',
       };
       props.logInHandler(user);
-      navigate("/");
+      navigate('/');
     }
   };
 
-  const responseGoogle = (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
-  ) => {
-    if ("profileObj" in response) {
+  const responseGoogle = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    if ('profileObj' in response) {
       console.log(response);
       const user: User = {
         login: response.profileObj.email,
         name: response.profileObj.name,
       };
       props.logInHandler(user);
-      navigate("/");
+      navigate('/');
     }
   };
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   type FieldType = {
@@ -80,7 +79,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
         <div className="all-of-div">
           <div className="login-page">
             <h1>
-              WELCOME TO <br /> BEST MOVIES{" "}
+              WELCOME TO <br /> BEST MOVIES{' '}
             </h1>
             <h2>Login </h2>
             <div className="container">
@@ -94,13 +93,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
               >
-                <Form.Item<FieldType>
-                  label="Username"
-                  name="username"
-                  rules={[
-                    { required: true, message: "Please input your username!" },
-                  ]}
-                >
+                <Form.Item<FieldType> label="Username" name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
                   <Input />
                 </Form.Item>
 
@@ -108,26 +101,18 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
                   label="Password"
                   name="password"
                   rules={[
-                    { required: true, message: "Please input your password!" },
-                    { min: 8, message: "password is shorter than 8" },
+                    { required: true, message: 'Please input your password!' },
+                    { min: 8, message: 'password is shorter than 8' },
                   ]}
                 >
                   <Input.Password />
                 </Form.Item>
 
                 <div className="remember-forgot">
-                  <Form.Item<FieldType>
-                    name="remember"
-                    valuePropName="checked"
-                    className="remember-forgot-remember"
-                  >
+                  <Form.Item<FieldType> name="remember" valuePropName="checked" className="remember-forgot-remember">
                     <Checkbox>Remember me</Checkbox>
                   </Form.Item>
-                  <Form.Item<FieldType>
-                    name="username"
-                    valuePropName="checked"
-                    className="remember-forgot-forgot"
-                  >
+                  <Form.Item<FieldType> name="username" valuePropName="checked" className="remember-forgot-forgot">
                     <Checkbox>forgot your password?</Checkbox>
                   </Form.Item>
                 </div>
@@ -144,7 +129,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
               buttonText="Sign in with Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
+              cookiePolicy={'single_host_origin'}
               className="google-login-button"
             />
             <div className="break">

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import './MovieList.scss';
 import { Link } from 'react-router-dom';
-import './MovieList.scss'; 
-import MoviePagination from './MoviePagination'; 
+import MoviePagination from './MoviePagination';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface Movie {
@@ -21,9 +21,7 @@ const MovieList: React.FC = () => {
     const fetchMovies = async () => {
       try {
         const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`
-        );
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`);
         setMovies(response.data.results);
         setTotalPages(response.data.total_pages);
       } catch (error) {
@@ -35,11 +33,11 @@ const MovieList: React.FC = () => {
   }, [currentPage]);
 
   const handlePrevPage = () => {
-    setCurrentPage(prev => (prev > 1 ? prev - 1 : prev));
+    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
   const handleNextPage = () => {
-    setCurrentPage(prev => (prev < totalPages ? prev + 1 : prev));
+    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
   };
 
   const handlePageChange = (page: number) => {
@@ -66,8 +64,8 @@ const MovieList: React.FC = () => {
         onNextPage={handleNextPage}
       />
 
-        <div className="movie-container">
-        {movies.map(movie => (
+      <div className="movie-container">
+        {movies.map((movie) => (
           <Link to={`/movies/${movie.id}`} key={movie.id} className="movie-item">
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
             <p>{movie.title}</p>
@@ -78,7 +76,9 @@ const MovieList: React.FC = () => {
       {selectedMovie && (
         <div className="movie-details">
           <div className="details-content">
-            <span className="close" onClick={closeMovieDetails}>&times;</span>
+            <button className="close" onClick={closeMovieDetails}>
+              &times;
+            </button>
             <h2>{selectedMovie.title}</h2>
             <img src={`https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`} alt={selectedMovie.title} />
             <p>{selectedMovie.overview}</p>

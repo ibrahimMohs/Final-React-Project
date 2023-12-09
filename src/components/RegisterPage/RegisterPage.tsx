@@ -1,19 +1,7 @@
-import React, { useState } from "react";
-import type { CascaderProps } from "antd";
-import "../RegisterPage/RegisterPage.scss";
-import background from "../../assets/images/backgroundimg.jpg";
-import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
+import '../RegisterPage/RegisterPage.scss';
+import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
+import React, { useState } from 'react';
+import background from '../../assets/images/backgroundimg.jpg';
 
 const { Option } = Select;
 
@@ -22,7 +10,6 @@ interface DataNodeType {
   label: string;
   children?: DataNodeType[];
 }
-
 
 const formItemLayout = {
   labelCol: {
@@ -52,7 +39,7 @@ const Register: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    console.log('Received values of form: ', values);
   };
 
   const prefixSelector = (
@@ -81,9 +68,7 @@ const Register: React.FC = () => {
     if (!value) {
       setAutoCompleteResult([]);
     } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
+      setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
     }
   };
 
@@ -102,8 +87,8 @@ const Register: React.FC = () => {
           name="register"
           onFinish={onFinish}
           initialValues={{
-            residence: ["zhejiang", "hangzhou", "xihu"],
-            prefix: "86",
+            residence: ['zhejiang', 'hangzhou', 'xihu'],
+            prefix: '86',
           }}
           style={{ maxWidth: 600 }}
           scrollToFirstError
@@ -113,12 +98,12 @@ const Register: React.FC = () => {
             label="E-mail"
             rules={[
               {
-                type: "email",
-                message: "The input is not valid E-mail!",
+                type: 'email',
+                message: 'The input is not valid E-mail!',
               },
               {
                 required: true,
-                message: "Please input your E-mail!",
+                message: 'Please input your E-mail!',
               },
             ]}
           >
@@ -131,7 +116,7 @@ const Register: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: 'Please input your password!',
               },
             ]}
             hasFeedback
@@ -142,21 +127,19 @@ const Register: React.FC = () => {
           <Form.Item
             name="confirm"
             label="Confirm Password"
-            dependencies={["password"]}
+            dependencies={['password']}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: "Please confirm your password!",
+                message: 'Please confirm your password!',
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
+                  if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(
-                    new Error("The new password that you entered do not match!")
-                  );
+                  return Promise.reject(new Error('The new password that you entered do not match!'));
                 },
               }),
             ]}
@@ -171,7 +154,7 @@ const Register: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your nickname!",
+                message: 'Please input your nickname!',
                 whitespace: true,
               },
             ]}
@@ -179,21 +162,11 @@ const Register: React.FC = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item
-            name="phone"
-            label="Phone Number"
-            rules={[
-              { required: true, message: "Please input your phone number!" },
-            ]}
-          >
-            <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
+          <Form.Item name="phone" label="Phone Number" rules={[{ required: true, message: 'Please input your phone number!' }]}>
+            <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
           </Form.Item>
 
-          <Form.Item
-            name="gender"
-            label="Gender"
-            rules={[{ required: true, message: "Please select gender!" }]}
-          >
+          <Form.Item name="gender" label="Gender" rules={[{ required: true, message: 'Please select gender!' }]}>
             <Select placeholder="select your gender">
               <Option value="male">Male</Option>
               <Option value="female">Female</Option>
@@ -201,10 +174,7 @@ const Register: React.FC = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item
-            label="Captcha"
-            extra="We must make sure that your are a human."
-          >
+          <Form.Item label="Captcha" extra="We must make sure that your are a human.">
             <Row gutter={8}>
               <Col span={12}>
                 <Form.Item
@@ -213,7 +183,7 @@ const Register: React.FC = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input the captcha you got!",
+                      message: 'Please input the captcha you got!',
                     },
                   ]}
                 >
@@ -231,16 +201,13 @@ const Register: React.FC = () => {
             valuePropName="checked"
             rules={[
               {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(new Error("Should accept agreement")),
+                validator: (_, value) => (value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement'))),
               },
             ]}
             {...tailFormItemLayout}
           >
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              I have read the <a href="/">agreement</a>
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { User } from "../../models/user";
-import { Menu, Input, Badge, Button, Drawer } from "antd";
-import type { MenuProps } from "antd";
-import { MenuOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
-import "./Header.scss";
-import logo from "../../assets/images/loggo.jpg";
+import './Header.scss';
+import { Badge, Button, Drawer, Input, Menu } from 'antd';
+import { BellOutlined, MenuOutlined, SearchOutlined } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { User } from '../../models/user';
+import React, { useState } from 'react';
+import logo from '../../assets/images/loggo.jpg';
 
 interface MenuItem {
   key: string;
@@ -23,62 +22,30 @@ export const Header = (props: HeaderProps) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
 
-  const menuItems: MenuProps["items"] = props.userInfo
+  const menuItems: MenuItem[] = props.userInfo
     ? [
-        { key: "/", label: "Home" },
-        {
-          key: "SubMenu",
-          label: "Genre",
-          children: [
-            {
-              type: "group",
-              label: "Item 1",
-              children: [
-                {
-                  label: "Option 1",
-                  key: "setting:1",
-                },
-                {
-                  label: "Option 2",
-                  key: "setting:2",
-                },
-              ],
-            },
-            {
-              type: "group",
-              label: "Item 2",
-              children: [
-                {
-                  label: "Option 3",
-                  key: "setting:3",
-                },
-                {
-                  label: "Option 4",
-                  key: "setting:4",
-                },
-              ],
-            },
-          ],
-        },
-        { key: "/movies", label: "Movies" },
-        { key: "/tv-shows", label: "TV Shows" },
-        { key: "/support", label: "Support" },
-        { key: "/subscriptions", label: "Subscriptions" },
+        { key: '/', label: 'Home', path: '/' },
+        { key: '1', label: 'Genre', path: '/genre' },
+        { key: '2', label: 'Movies', path: '/movies' },
+        { key: '3', label: 'TV Shows', path: '/tv-shows' },
+        { key: '4', label: 'Support', path: '/support' },
+        { key: '5', label: 'Subscriptions', path: '/subscriptions' },
         // { key: "5", label: "Log in/Register", path: "/login-register" },
       ]
     : [
-        { key: "/", label: "Home" },
-        { key: "/genre", label: "Genre" },
-        { key: "/movies", label: "Movies" },
-        { key: " /tv-shows", label: "TV Shows" },
-        { key: "/support", label: "Support" },
-        { key: "/subscriptions", label: "Subscriptions" },
-        { key: "/login-register", label: "Log in/Register" },
+        { key: '/', label: 'Home', path: '/' },
+        { key: '1', label: 'Genre', path: '/genre' },
+        { key: '2', label: 'Movies', path: '/movies' },
+        { key: '3', label: 'TV Shows', path: '/tv-shows' },
+        { key: '4', label: 'Support', path: '/support' },
+        { key: '5', label: 'Subscriptions', path: '/subscriptions' },
+        { key: '6', label: 'Log in/Register', path: '/login-register' },
       ];
 
   const onSearch = (value: string) => {
-    console.log("Search:", value);
-    // Implement search functionality here
+    if (value.trim()) {
+      navigate(`/search?query=${encodeURIComponent(value.trim())}`);
+    }
   };
 
   const toggleSearch = () => setSearchActive(!searchActive);
@@ -88,9 +55,9 @@ export const Header = (props: HeaderProps) => {
   };
 
   const handleMenuClick = (e: any) => {
-    const menuItem = menuItems.find((item: any) => item.key === e.key);
+    const menuItem = menuItems.find((item) => item.key === e.key);
     if (menuItem) {
-      //navigate(menuItem.key!);
+      navigate(menuItem.path);
     }
   };
 
@@ -104,22 +71,11 @@ export const Header = (props: HeaderProps) => {
         <MenuOutlined />
       </Button>
 
-      <Drawer
-        title="Menu"
-        placement="right"
-        closable={true}
-        onClose={toggleDrawer}
-        open={drawerVisible}
-      >
+      <Drawer title="Menu" placement="right" closable={true} onClose={toggleDrawer} open={drawerVisible}>
         {props.userInfo && (
-          <Menu
-            theme="dark"
-            mode="vertical"
-            defaultSelectedKeys={["/"]}
-            onClick={handleMenuClick}
-          >
-            {menuItems.map((item) => ( <></>
-             // <Menu.Item key={item.key}>{item.label}</Menu.Item>
+          <Menu theme="dark" mode="vertical" defaultSelectedKeys={['/']} onClick={handleMenuClick}>
+            {menuItems.map((item) => (
+              <Menu.Item key={item.key}>{item.label}</Menu.Item>
             ))}
           </Menu>
         )}
@@ -127,31 +83,17 @@ export const Header = (props: HeaderProps) => {
 
       {props.userInfo ? (
         <nav>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={["/"]}
-            onClick={handleMenuClick}
-            className="header-menu"
-          >
-            {menuItems.map((item) => (<></>
-             // <Menu.Item key={item.key}>{item.label}</Menu.Item>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/']} onClick={handleMenuClick} className="header-menu">
+            {menuItems.map((item) => (
+              <Menu.Item key={item.key}>{item.label}</Menu.Item>
             ))}
           </Menu>
 
           <div className="header-tools">
             {searchActive && (
-              <Input
-                placeholder="Search"
-                onPressEnter={(e) => onSearch(e.currentTarget.value)}
-                onBlur={() => setSearchActive(false)}
-                autoFocus
-              />
+              <Input placeholder="Search" onPressEnter={(e) => onSearch(e.currentTarget.value)} onBlur={() => setSearchActive(false)} autoFocus />
             )}
-            <SearchOutlined
-              onClick={toggleSearch}
-              className="icon search-icon"
-            />
+            <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
             <Badge count={notificationCount}>
               <BellOutlined className="icon notification-icon" />
             </Badge>
@@ -160,31 +102,17 @@ export const Header = (props: HeaderProps) => {
       ) : (
         <>
           <nav>
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={["/"]}
-              onClick={handleMenuClick}
-              className="header-menu"
-            >
-              {menuItems.map((item) => (<></>
-             //   <Menu.Item key={item.key}>{item.label}</Menu.Item>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/']} onClick={handleMenuClick} className="header-menu">
+              {menuItems.map((item) => (
+                <Menu.Item key={item.key}>{item.label}</Menu.Item>
               ))}
             </Menu>
 
             <div className="header-tools">
               {searchActive && (
-                <Input
-                  placeholder="Search"
-                  onPressEnter={(e) => onSearch(e.currentTarget.value)}
-                  onBlur={() => setSearchActive(false)}
-                  autoFocus
-                />
+                <Input placeholder="Search" onPressEnter={(e) => onSearch(e.currentTarget.value)} onBlur={() => setSearchActive(false)} autoFocus />
               )}
-              <SearchOutlined
-                onClick={toggleSearch}
-                className="icon search-icon"
-              />
+              <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
               <Badge count={notificationCount}>
                 <BellOutlined className="icon notification-icon" />
               </Badge>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './TVShowsList.scss';
-import TVShowPagination from '../MovieList/MoviePagination'; 
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import TVShowPagination from '../MovieList/MoviePagination';
 import axios from 'axios';
 
 interface TVShow {
@@ -15,14 +15,12 @@ const TVShowsList: React.FC = () => {
   const [tvShows, setTVShows] = useState<TVShow[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [selectedTVShow, setSelectedTVShow] = useState<TVShow | null>(null); 
+  const [selectedTVShow, setSelectedTVShow] = useState<TVShow | null>(null);
   useEffect(() => {
     const fetchTVShows = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe'; 
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`
-        );
+        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
+        const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`);
         setTVShows(response.data.results);
         setTotalPages(response.data.total_pages);
       } catch (error) {
@@ -34,11 +32,11 @@ const TVShowsList: React.FC = () => {
   }, [currentPage]);
 
   const handlePrevPage = () => {
-    setCurrentPage(prev => (prev > 1 ? prev - 1 : prev));
+    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
   const handleNextPage = () => {
-    setCurrentPage(prev => (prev < totalPages ? prev + 1 : prev));
+    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
   };
 
   const handlePageChange = (page: number) => {
@@ -50,7 +48,7 @@ const TVShowsList: React.FC = () => {
   };
 
   const closeTVShowDetails = () => {
-    setSelectedTVShow(null); 
+    setSelectedTVShow(null);
   };
 
   return (
@@ -66,7 +64,7 @@ const TVShowsList: React.FC = () => {
       />
 
       <div className="tv-show-container">
-        {tvShows.map(tvShow => (
+        {tvShows.map((tvShow) => (
           <Link to={`/tv-shows/${tvShow.id}`} key={tvShow.id} className="tv-show-item">
             <img src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`} alt={tvShow.name} />
             <p>{tvShow.name}</p>
@@ -77,7 +75,9 @@ const TVShowsList: React.FC = () => {
       {selectedTVShow && (
         <div className="tv-show-details">
           <div className="details-content">
-            <span className="close" onClick={closeTVShowDetails}>&times;</span>
+            <button className="close" onClick={closeTVShowDetails}>
+              &times;
+            </button>
             <h2>{selectedTVShow.name}</h2>
             <img src={`https://image.tmdb.org/t/p/w500/${selectedTVShow.poster_path}`} alt={selectedTVShow.name} />
             <p>{selectedTVShow.overview}</p>

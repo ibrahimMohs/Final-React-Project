@@ -1,0 +1,16 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin: 20px;
+}
+
+img{
+    width: 85%;
+    border-radius: 8px;
+}
+
+// .grid-item{
+//     width: 85px;
+// }

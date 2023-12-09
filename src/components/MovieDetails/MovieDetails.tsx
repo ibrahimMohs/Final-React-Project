@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
-import CastDetails from '../CastDetails/CastDetails';
 import '../MovieDetails/MovieDetails.scss';
+import { Link, useParams } from 'react-router-dom';
+import CastDetails from '../CastDetails/CastDetails';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface MovieDetailsProps {}
 
@@ -42,24 +42,18 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
       try {
         const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
 
-        const movieResponse = await axios.get<MovieDetailsData>(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
-        );
+        const movieResponse = await axios.get<MovieDetailsData>(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`);
         const basicDetails = movieResponse.data;
 
-        const castResponse = await axios.get<{ cast: CastMember[] }>(
-          `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
-        );
+        const castResponse = await axios.get<{ cast: CastMember[] }>(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`);
         const cast = castResponse.data.cast;
 
         const videosResponse = await axios.get<{ results: Trailer[] }>(
-          `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`
+          `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`,
         );
         const trailers = videosResponse.data.results.filter((video: any) => video.type === 'Trailer');
 
-        const movieDetailsResponse = await axios.get(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=credits`
-        );
+        const movieDetailsResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=credits`);
         const movieDetails = movieDetailsResponse.data;
 
         setMovieDetails({
@@ -67,7 +61,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
           rating: movieDetails.vote_average,
           country: movieDetails.production_countries.map((country: { iso_3166_1: string; name: string }) => country.name),
           directors: movieDetails.credits.crew.filter((member: any) => member.job === 'Director'),
-          writers: movieDetails.credits.crew.filter((member: any) => member.department === 'Writing')
+          writers: movieDetails.credits.crew.filter((member: any) => member.department === 'Writing'),
         });
 
         setCast(cast);
@@ -101,7 +95,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
               <div>
                 <h2>Genres:</h2>
                 <ul>
-                  {movieDetails.genres.map(genre => (
+                  {movieDetails.genres.map((genre) => (
                     <li key={genre.id}>{genre.name}</li>
                   ))}
                 </ul>
@@ -113,7 +107,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
               <div>
                 <h2>Directors:</h2>
                 <ul>
-                  {movieDetails.directors.map(director => (
+                  {movieDetails.directors.map((director) => (
                     <li key={director.id}>{director.name}</li>
                   ))}
                 </ul>
@@ -122,7 +116,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
               <div>
                 <h2>Writers:</h2>
                 <ul>
-                  {movieDetails.writers.map(writer => (
+                  {movieDetails.writers.map((writer) => (
                     <li key={writer.id}>{writer.name}</li>
                   ))}
                 </ul>
@@ -131,13 +125,9 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
               <div>
                 <h2>Trailers:</h2>
                 <ul>
-                  {trailers.map(trailer => (
+                  {trailers.map((trailer) => (
                     <li key={trailer.id}>
-                      <a
-                        href={`https://www.youtube.com/watch?v=${trailer.key}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" rel="noopener noreferrer">
                         {trailer.name}
                       </a>
                     </li>
@@ -149,7 +139,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
 
           <h2>Cast:</h2>
           <div className="cast-list">
-            {cast.map(member => (
+            {cast.map((member) => (
               <div key={member.id} className="cast-item">
                 <Link to={`/cast/${member.id}`}>
                   <div>

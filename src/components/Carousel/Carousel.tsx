@@ -1,93 +1,70 @@
+import '../Carousel/Carousel.scss';
+import { Carousel } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
-import React, { useEffect } from "react";
-import { Carousel } from "antd";
-import { Movies } from "../../models/CarouselObject";
-import "./Carousel.scss";
-import { CarouselRef } from "antd/es/carousel";
+// Define the structure of a movie object based on the API response
+interface Movie {
+  id: number;
+  title: string;
+  backdrop_path: string;
+  vote_average: number;
+  overview: string;
+}
 
-interface Movies {
-  imageUrl: string;
-  Moviename:string;
-  Director: string;
-  IMDB: number;
-  Genre: string;
-  description: string;
-}
-interface ArrayProps {
-  items: Movies[];
-}
-export const CarouselCustom: React.FC = () => {
-  const carouselRef = React.createRef<CarouselRef>();
-  const carouselWrapperRef = React.createRef<HTMLDivElement>();
+const CarouselCustom: React.FC = () => {
+  const [latestMovies, setLatestMovies] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const carouselRef = useRef<any>(null);
 
   useEffect(() => {
-    const handleWindowWheel = (event: WheelEvent) => {
-      if (isChildOfCarouselWrapper(event.target as HTMLElement)) {
-        event.preventDefault();
+    const fetchLatestMovies = async () => {
+      const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`);
+        setLatestMovies(response.data.results);
+      } catch (error) {
+        console.error('Error fetching latest movies:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    window.addEventListener("wheel", handleWindowWheel, { passive: false });
-
-    return () => {
-      window.removeEventListener("wheel", handleWindowWheel);
-    };
+    fetchLatestMovies();
   }, []);
 
-  const isChildOfCarouselWrapper = (currentNode: HTMLElement): boolean => {
-    if (currentNode.tagName === "BODY") {
-      return false;
-    }
-
-    if (currentNode.className === "carousel-wrapper") {
-      return true;
-    }
-
-    return isChildOfCarouselWrapper(currentNode.parentElement as HTMLElement);
-  };
-
   const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
+    console.log('Current slide is:', currentSlide);
   };
 
-  const handleWheel = (event: React.WheelEvent) => {
-    event.deltaY > 0
-      ? carouselRef.current?.next()
-      : carouselRef.current?.prev();
+  // This is an example of a handler for the mouse wheel event
+  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    event.deltaY > 0 ? carouselRef.current?.next() : carouselRef.current?.prev();
   };
 
-    function item(value: { imageUrl: any; Moviename: string; Director: string; IMDB: number; Genre: string; description: string; }, index: number, array: { imageUrl: any; Moviename: string; Director: string; IMDB: number; Genre: string; description: string; }[]): unknown {
-        throw new Error("Function not implemented.");
-    }
+  if (isLoading) {
+    return <div className="loading-container">Loading...</div>;
+  }
 
-    return (
-        <div className="wrapper">
-        <div
-            onWheel={(event) => handleWheel(event)}
-            className="carousel-wrapper"
-            ref={carouselWrapperRef}
-        >
-            <Carousel
-            afterChange={onChange}
-            className="main-carousel"
-            ref={carouselRef}
-            >
-                    {Movies.map((item) => (
-                // <div className='main-carousel'>
-                <div className="movie-card">
-                <img className="carousel-image" src={item.imageUrl} />
-                <div className="about-movie-container">
-                    <p>Moviename:{item.Moviename}</p>
-                    <p>Director:{item.Director}</p>
-                    <p>IMDB:{item.IMDB}</p>
-                    <p>Genre:{item.Genre}</p>
-                </div>
-                </div>
-
-                // </div>
-            ))}
-            </Carousel>
-        </div>
-        </div>
-    );
+  return (
+    <div className="wrapper">
+      <div className="carousel-wrapper" onWheel={handleWheel}>
+        <Carousel afterChange={onChange} ref={carouselRef}>
+          {latestMovies.map((movie) => (
+            <div key={movie.id} className="movie-card">
+              <img className="carousel-image" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
+              <div className="about-movie-container">
+                <p>Title: {movie.title}</p>
+                <p>Rating: {movie.vote_average}</p>
+                <p>Overview: {movie.overview}</p>
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+    </div>
+  );
 };
+
+export default CarouselCustom;

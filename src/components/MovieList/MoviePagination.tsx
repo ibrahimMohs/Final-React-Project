@@ -8,13 +8,7 @@ interface MoviePaginationProps {
   onNextPage: () => void;
 }
 
-const MoviePagination: React.FC<MoviePaginationProps> = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-  onPrevPage,
-  onNextPage,
-}) => {
+const MoviePagination: React.FC<MoviePaginationProps> = ({ currentPage, totalPages, onPageChange, onPrevPage, onNextPage }) => {
   return (
     <div className="pagination">
       <button onClick={onPrevPage} disabled={currentPage === 1}>
