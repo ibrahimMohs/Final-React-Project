@@ -58,7 +58,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
       navigate('/');
     }
   };
-  const onFinish = (values: any) => {
+  const onFinish = (values: unknown) => {
     console.log('Success:', values);
   };
 
