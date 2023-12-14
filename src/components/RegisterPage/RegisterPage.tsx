@@ -84,6 +84,7 @@ const Register: React.FC = () => {
         <Form
           {...formItemLayout}
           form={form}
+          className="form-part"
           name="register"
           onFinish={onFinish}
           initialValues={{
@@ -211,7 +212,7 @@ const Register: React.FC = () => {
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
+            <Button className="register-button" type="primary" htmlType="submit">
               Register
             </Button>
           </Form.Item>
