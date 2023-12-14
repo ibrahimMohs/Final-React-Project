@@ -1,14 +1,20 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 // HomePage.tsx
 import './HomePage.scss';
 import Carousel from '../../components/Carousel/Carousel';
+import FBlogo from '../../assets/images/facebook-logo.png';
 import MediaGrid from '../../components/MediaGrid/MediaGrid';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import instagramLogo from '../../assets/images/Instagram-logo.jpg';
+import twitterLogo from '../../assets/images/twitter-logo.png';
 
 interface Movie {
   id: number;
   title: string;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   backdrop_path?: string;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   vote_average: number;
   overview: string;
   poster_path?: string;
@@ -52,6 +58,21 @@ export const HomePage: React.FC = () => {
       <MediaGrid title="New Movies" items={newMovies} />
       <MediaGrid title="New TV Shows" items={newTVShows} />
       <MediaGrid title="Upcoming Movies" items={upcomingMovies} />
+      <div className="logo-medias">
+        <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer">
+          <img className="instagram-logo" src={instagramLogo} alt="Instagram Logo" width="50" height="50" />
+        </a>
+        <a href="https://twitter.com/your-twitter-profile" target="_blank" rel="noopener noreferrer">
+          <img className="instagram-logo" src={twitterLogo} alt="Twitter Logo" />
+        </a>
+        <a
+          href="https://www.facebook.com/" // Replace with the actual Facebook page URL
+          target="_blank" // Open link in a new tab/window
+          rel="noopener noreferrer"
+        >
+          <img className="instagram-logo" src={FBlogo} alt="Facebook Logo" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+        </a>
+      </div>
     </div>
   );
 };

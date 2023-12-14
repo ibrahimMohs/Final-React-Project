@@ -1,0 +1,44 @@
+$font-family: 'Playfair Display', serif;
+
+.logo-medias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.instagram-logo{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 50%;
+}
+.media-grid{
+   color: rgb(13, 139, 174);
+   font-style: oblique;
+   font-size: large;
+   font-family: $font-family;
+ 
+ 
+
+   h2{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+   }
+}
+.home-page{
+    background-color: #222;
+}
+.about-movie-container{
+    color: white;
+    font-family: $font-family;
+    font-size: 18px;
+}
+.grid-item{
+    color: white;
+}

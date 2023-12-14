@@ -4,6 +4,7 @@ import fourthmovie from '../assets/images/movie4.jpg';
 import secondmovie from '../assets/images/movie2.jpg';
 import thirdmovie from '../assets/images/movie3.jpg';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const CarouselMovies = [
   {
     imageUrl: firstmovie,

@@ -2,13 +2,13 @@
 .form-container {
     display: flex;
     justify-content: center;
-    
+    background-color: #333;
   .all-forms {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 650px;
-      height: 700px;
+      height: 770px;
       border: 5px solid #0958d9;
       padding: 50px;
       margin: 20px;
@@ -28,4 +28,14 @@
 .register-background{
   position: absolute;
   opacity: 20%;
+  height: 100%;
+  width: 100%;
+}
+
+.form-part{
+  width: 500px;
+}
+.register-button{
+  margin-left: 70px;
+  margin-top: 25px;
 }

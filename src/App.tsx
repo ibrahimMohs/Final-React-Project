@@ -5,7 +5,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { User } from './models/user';
 import CastDetails from './components/CastDetails/CastDetails';
-import Genre from './components/Genre/Genre';
+import GenreMovies from './components/GenreMovies/GenreMovies';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import MovieList from './components/MovieList/MovieList';
@@ -38,14 +38,13 @@ const App = () => {
           <Content style={{ padding: '50px' }}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="genre" element={<Genre />} />
+              <Route path="/genre/:genreName" element={<GenreMovies />} />
               <Route path="movies" element={<MovieList />} />
               <Route path="movies/:movieId" element={<MovieDetails />} />
               <Route path="cast/:castId" element={<CastDetails />} />
               <Route path="tv-shows" element={<TVShowsList />} />
               <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
-              {/* <Route path="support" element={<Support />} />
-              <Route path="subscriptions" element={<Subscriptions />} /> */}
+              {/* <Route path="subscriptions" element={<Subscriptions />} /> */}
               <Route path="/search" element={<SearchResultsPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
@@ -53,14 +52,13 @@ const App = () => {
         ) : (
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="genre" element={<Genre />} />
+            <Route path="/genre/:genreName" element={<GenreMovies />} />
             <Route path="movies" element={<MovieList />} />
             <Route path="movies/:movieId" element={<MovieDetails />} />
             <Route path="cast/:castId" element={<CastDetails />} />
             <Route path="tv-shows" element={<TVShowsList />} />
             <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
-            {/* <Route path="support" element={<Support />} />
-            <Route path="subscriptions" element={<Subscriptions />} /> */}
+            {/* <Route path="subscriptions" element={<Subscriptions />} /> */}
             <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="/RegisterPage" element={<RegisterPage />} />
             <Route path="/search" element={<SearchResultsPage />} />
