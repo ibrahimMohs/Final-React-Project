@@ -14,6 +14,8 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import TVShowsDetail from './components/TVShowsDetails/TVShowsDetail';
 import TVShowsList from './components/TVShows/TVShowsList';
+import AnimationNow from '../src/components/Animation/Animation';
+import MyAccount from './MyAccount/MyAccount';
 const { Content, Footer } = Layout;
 
 const App = () => {
@@ -30,8 +32,11 @@ const App = () => {
 
   const showHeader = location.pathname !== '/login-register' && location.pathname !== '/RegisterPage';
 
+  
+  
   return (
     <>
+    <AnimationNow />
       {showHeader && <Header userInfo={userInfo} />}
       <Layout>
         {userInfo ? (
@@ -47,6 +52,7 @@ const App = () => {
               {/* <Route path="support" element={<Support />} />
               <Route path="subscriptions" element={<Subscriptions />} /> */}
               <Route path="/search" element={<SearchResultsPage />} />
+              <Route path="/myaccount" element={<MyAccount/>} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Content>
@@ -64,6 +70,7 @@ const App = () => {
             <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="/RegisterPage" element={<RegisterPage />} />
             <Route path="/search" element={<SearchResultsPage />} />
+            <Route path="/myaccount" element={<MyAccount/>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )}

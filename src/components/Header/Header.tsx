@@ -30,7 +30,7 @@ export const Header = (props: HeaderProps) => {
         { key: '3', label: 'TV Shows', path: '/tv-shows' },
         { key: '4', label: 'Support', path: '/support' },
         { key: '5', label: 'Subscriptions', path: '/subscriptions' },
-        // { key: "5", label: "Log in/Register", path: "/login-register" },
+        { key: "6", label: "My Account ", path: "/my-account" },
       ]
     : [
         { key: '/', label: 'Home', path: '/' },
@@ -40,6 +40,7 @@ export const Header = (props: HeaderProps) => {
         { key: '4', label: 'Support', path: '/support' },
         { key: '5', label: 'Subscriptions', path: '/subscriptions' },
         { key: '6', label: 'Log in/Register', path: '/login-register' },
+        { key: "7", label: "My Account ", path: "/my-account" },
       ];
 
   const onSearch = (value: string) => {
