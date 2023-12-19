@@ -15,7 +15,9 @@ import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import TVShowsDetail from './components/TVShowsDetails/TVShowsDetail';
 import TVShowsList from './components/TVShows/TVShowsList';
 import AnimationNow from '../src/components/Animation/Animation';
-import MyAccount from './MyAccount/MyAccount';
+import MyAccount from '../src/components/MyAccount/MyAccount';
+import ProfileInformation from './components/ProfileInformation/ProfileInformation';
+
 const { Content, Footer } = Layout;
 
 const App = () => {
@@ -52,7 +54,8 @@ const App = () => {
               {/* <Route path="support" element={<Support />} />
               <Route path="subscriptions" element={<Subscriptions />} /> */}
               <Route path="/search" element={<SearchResultsPage />} />
-              <Route path="/myaccount" element={<MyAccount/>} />
+              <Route path="/my-account" element={<MyAccount/>} />
+              <Route path="/my-account/profile-information" element={<ProfileInformation/>} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Content>
@@ -70,7 +73,8 @@ const App = () => {
             <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="/RegisterPage" element={<RegisterPage />} />
             <Route path="/search" element={<SearchResultsPage />} />
-            <Route path="/myaccount" element={<MyAccount/>} />
+            <Route path="/my-account" element={<MyAccount/>} />
+            <Route path="/my-account/profile-information" element={<ProfileInformation/>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )}

@@ -1,5 +1,6 @@
 import '../MovieDetails/MovieDetails.scss';
 import { Link, useParams } from 'react-router-dom';
+import Animation from '../Animation/Animation';
 import CastDetails from '../CastDetails/CastDetails';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -158,7 +159,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Animation />
       )}
     </div>
   );

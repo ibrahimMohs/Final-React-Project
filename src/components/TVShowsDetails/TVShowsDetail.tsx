@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import CastDetails from '../CastDetails/CastDetails';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Animation from '../Animation/Animation';
 
 interface TVShowDetailsProps {}
 
@@ -149,7 +150,7 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Animation />
       )}
     </div>
   );
