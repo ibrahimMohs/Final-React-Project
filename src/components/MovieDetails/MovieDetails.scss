@@ -1,3 +1,4 @@
+$font-family: 'Playfair Display', serif;
 .cast-list {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -6,4 +7,25 @@
 .parts{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+   
+}
+.movie-details{
+    background-color: #333;
+    font-family: $font-family;
+    h1{
+        color: white;
+    }
+    h2{
+        color: white;
+    }
+    li{
+        color: white;
+    }
+    p{
+        color: white;
+    }
+   
+}
+.movie-img{
+    width: 50%;
 }

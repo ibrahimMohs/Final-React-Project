@@ -42,7 +42,7 @@ const CastDetails = () => {
   }, [castId]);
 
   return (
-    <div>
+    <div className='movie-list-all'>
       <div>
         <h2>Movies</h2>
         <div className="moviesList">

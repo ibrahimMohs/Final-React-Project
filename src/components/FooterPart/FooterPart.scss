@@ -1,0 +1,62 @@
+$font-family: 'Playfair Display', serif;
+.footer-part{
+    background-color:#333;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    padding: 0px 80px 0px 80px;
+}    
+
+.logo-medias{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    p{
+
+        color: white;
+        font-style:italic;
+        font-size: larger;
+    }
+    .logo-medias-flex{
+        gap: 30px;
+        display: flex;
+    }
+
+}
+.all-logos{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    
+}
+.left-part{
+    gap: 30px;
+    display: flex;
+    align-items: center;
+}
+@keyframes rotateLefttoRight{
+    0%{
+        transform: perspective(1200px) rotateY(0deg);
+    }
+    100%{
+        transform: perspective(1200px) rotateY(360deg);
+    }
+}
+.footer-logo{
+    animation: rotateLefttoRight 5s linear infinite;
+    width: 90px;
+    height: 90px;
+}
+.footer-text{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px;
+    color: white;
+    font-family: $font-family;
+    font-style: oblique;
+}

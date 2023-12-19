@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import CastDetails from '../CastDetails/CastDetails';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../TVShowsDetails/TVShowsDetail.scss';
 
 interface TVShowDetailsProps {}
 
@@ -74,12 +75,12 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
   }, [tvShowId]);
 
   return (
-    <div>
+    <div className="tvshow-details-all">
       {tvShowDetails ? (
-        <div>
+        <div className="tvshow-details">
           <h1>{tvShowDetails.name}</h1>
           <div className="parts">
-            <img src={`https://image.tmdb.org/t/p/w500/${tvShowDetails.poster_path}`} alt={tvShowDetails.name} />
+            <img className="show-img" src={`https://image.tmdb.org/t/p/w500/${tvShowDetails.poster_path}`} alt={tvShowDetails.name} />
             <div>
               <p>{tvShowDetails.overview}</p>
 

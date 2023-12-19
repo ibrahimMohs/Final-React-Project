@@ -1,5 +1,6 @@
 import './TVShowsList.scss';
 import { Link } from 'react-router-dom';
+import FooterPart from '../FooterPart/FooterPart';
 import React, { useEffect, useState } from 'react';
 import TVShowPagination from '../MovieList/MoviePagination';
 import axios from 'axios';
@@ -52,47 +53,50 @@ const TVShowsList: React.FC = () => {
   };
 
   return (
-    <div className="tv-shows-list">
-      <h1>TV Shows</h1>
+    <>
+      <div className="tv-shows-list">
+        <h1>TV Shows</h1>
 
-      <TVShowPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        onPrevPage={handlePrevPage}
-        onNextPage={handleNextPage}
-      />
+        <TVShowPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          onPrevPage={handlePrevPage}
+          onNextPage={handleNextPage}
+        />
 
-      <div className="tv-show-container">
-        {tvShows.map((tvShow) => (
-          <Link to={`/tv-shows/${tvShow.id}`} key={tvShow.id} className="tv-show-item">
-            <img src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`} alt={tvShow.name} />
-            <p>{tvShow.name}</p>
-          </Link>
-        ))}
-      </div>
-
-      {selectedTVShow && (
-        <div className="tv-show-details">
-          <div className="details-content">
-            <button className="close" onClick={closeTVShowDetails}>
-              &times;
-            </button>
-            <h2>{selectedTVShow.name}</h2>
-            <img src={`https://image.tmdb.org/t/p/w500/${selectedTVShow.poster_path}`} alt={selectedTVShow.name} />
-            <p>{selectedTVShow.overview}</p>
-          </div>
+        <div className="tv-show-container">
+          {tvShows.map((tvShow) => (
+            <Link to={`/tv-shows/${tvShow.id}`} key={tvShow.id} className="tv-show-item">
+              <img src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`} alt={tvShow.name} />
+              <p>{tvShow.name}</p>
+            </Link>
+          ))}
         </div>
-      )}
 
-      <TVShowPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        onPrevPage={handlePrevPage}
-        onNextPage={handleNextPage}
-      />
-    </div>
+        {selectedTVShow && (
+          <div className="tv-show-details">
+            <div className="details-content">
+              <button className="close" onClick={closeTVShowDetails}>
+                &times;
+              </button>
+              <h2>{selectedTVShow.name}</h2>
+              <img src={`https://image.tmdb.org/t/p/w500/${selectedTVShow.poster_path}`} alt={selectedTVShow.name} />
+              <p>{selectedTVShow.overview}</p>
+            </div>
+          </div>
+        )}
+
+        <TVShowPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          onPrevPage={handlePrevPage}
+          onNextPage={handleNextPage}
+        />
+      </div>
+      <FooterPart />
+    </>
   );
 };
 

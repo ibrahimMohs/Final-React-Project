@@ -55,7 +55,9 @@ const CarouselCustom: React.FC = () => {
         <Carousel afterChange={onChange} ref={carouselRef}>
           {latestMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
+              <div className="carousel-img"></div>
               <img className="carousel-image" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
+              <div className="carousel-img"></div>
               <div className="about-movie-container">
                 <p>Title: {movie.title}</p>
                 <p>Rating: {movie.vote_average}</p>
