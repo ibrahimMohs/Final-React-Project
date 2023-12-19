@@ -3,7 +3,7 @@ $font-family: 'Playfair Display', serif;
   font-family: $font-family;
   color: rgb(13, 139, 174);
   font-style: oblique;
-  background-color: #222;
+  background-color: #222 !important;
 
   p{
     color: white !important;

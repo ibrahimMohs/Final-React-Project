@@ -83,12 +83,12 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
   };
 
   return (
-    <div>
+    <div className="movie-details">
       {movieDetails ? (
         <div>
           <h1>{movieDetails.title}</h1>
           <div className="parts">
-            <img src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
+            <img className="movie-img" src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
             <div>
               <p>{movieDetails.overview}</p>
 

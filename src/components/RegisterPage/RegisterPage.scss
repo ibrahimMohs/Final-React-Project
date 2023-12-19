@@ -2,13 +2,13 @@
 .form-container {
     display: flex;
     justify-content: center;
-    background-color: #333;
+    background-color: #222;
   .all-forms {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 650px;
-      height: 770px;
+      width: 600px;
+      height:700px;
       border: 5px solid #0958d9;
       padding: 50px;
       margin: 20px;
@@ -38,4 +38,8 @@
 .register-button{
   margin-left: 70px;
   margin-top: 25px;
+}
+
+.agreement{
+  color:#0958d9 !important;
 }

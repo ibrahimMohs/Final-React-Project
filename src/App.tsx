@@ -1,20 +1,25 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
+/* eslint-disable no-redeclare */
 import { Header } from './components/Header/Header';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Layout } from 'antd';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { User } from './models/user';
+import { useState } from 'react';
 import CastDetails from './components/CastDetails/CastDetails';
+import FooterPart from './components/FooterPart/FooterPart';
 import GenreMovies from './components/GenreMovies/GenreMovies';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import MovieList from './components/MovieList/MovieList';
-import React, { useState } from 'react';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
+import Subscription from './components/Subscription/Subscription';
 import TVShowsDetail from './components/TVShowsDetails/TVShowsDetail';
 import TVShowsList from './components/TVShows/TVShowsList';
-const { Content, Footer } = Layout;
+// eslint-disable-next-line no-import-assign
+const { Content } = Layout;
 
 const App = () => {
   const [userInfo, setUserInfo] = useState<User | undefined>(undefined);
@@ -44,9 +49,10 @@ const App = () => {
               <Route path="cast/:castId" element={<CastDetails />} />
               <Route path="tv-shows" element={<TVShowsList />} />
               <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
-              {/* <Route path="subscriptions" element={<Subscriptions />} /> */}
+              <Route path="subscriptions" element={<Subscription />} />
               <Route path="/search" element={<SearchResultsPage />} />
               <Route path="*" element={<NotFoundPage />} />
+              <Route path="/FooterPart" element={<FooterPart />} />
             </Routes>
           </Content>
         ) : (
@@ -58,9 +64,10 @@ const App = () => {
             <Route path="cast/:castId" element={<CastDetails />} />
             <Route path="tv-shows" element={<TVShowsList />} />
             <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
-            {/* <Route path="subscriptions" element={<Subscriptions />} /> */}
+            <Route path="subscriptions" element={<Subscription />} />
             <Route path="login-register" element={<LoginPage logInHandler={handleLogIn} />} />
             <Route path="/RegisterPage" element={<RegisterPage />} />
+            <Route path="/FooterPart" element={<FooterPart />} />
             <Route path="/search" element={<SearchResultsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

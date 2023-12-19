@@ -3,9 +3,6 @@ $font-family: 'Playfair Display', serif;
 
 .main {
   position: relative;
-  max-width: 1250px;
-
-  
 }
 .background {
   position: absolute;
@@ -14,19 +11,22 @@ $font-family: 'Playfair Display', serif;
 
 }
 .login-page {
-  margin-top: 150px;
+  margin-top: 59px;
   margin-bottom: 100px;
-  padding-right: 120px;
+  padding-right: 100px;
   h1{
     font-family: $font-family;
     color: darkblue;
     font-weight: bold;
+    text-align: center;
+    box-shadow: 1px 1px 3px 3px #3e16cf;
   }
   h2{
     font-family:  $font-family;
     color: black;
     margin-top: 30px;
     font-weight: bold;
+    filter: drop-shadow(3px 3px 3px #4a88bb);
   }
 }
 .password {
@@ -158,7 +158,7 @@ hr {
   }
   a {
     text-decoration: none;
-    color: inherit;
+    color: inherit !important;
     font-weight: 500;
     font-size: 16px;
   }
@@ -169,11 +169,12 @@ hr {
   align-items: center;
   justify-content: space-between;
 
-  &-forgot {
-    flex-basis: 50%;
-  }
 
-  .remember-forgot-remember {
-    display: flex;
+  .remember{
+    width: 200px;
+    margin-top: 22px;
+  }
+  .forgot {
+      color: #000 !important;
   }
 }

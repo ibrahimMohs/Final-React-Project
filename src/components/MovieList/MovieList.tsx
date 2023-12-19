@@ -1,5 +1,6 @@
-import './MovieList.scss';
+import '../MovieList/MovieList.scss';
 import { Link } from 'react-router-dom';
+import FooterPart from '../FooterPart/FooterPart';
 import MoviePagination from './MoviePagination';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -53,47 +54,50 @@ const MovieList: React.FC = () => {
   };
 
   return (
-    <div className="movie-list">
-      <h1>Movies</h1>
+    <>
+      <div className="movie-list">
+        <h1>Movies</h1>
 
-      <MoviePagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        onPrevPage={handlePrevPage}
-        onNextPage={handleNextPage}
-      />
+        <MoviePagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          onPrevPage={handlePrevPage}
+          onNextPage={handleNextPage}
+        />
 
-      <div className="movie-container">
-        {movies.map((movie) => (
-          <Link to={`/movies/${movie.id}`} key={movie.id} className="movie-item">
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-            <p>{movie.title}</p>
-          </Link>
-        ))}
-      </div>
-
-      {selectedMovie && (
-        <div className="movie-details">
-          <div className="details-content">
-            <button className="close" onClick={closeMovieDetails}>
-              &times;
-            </button>
-            <h2>{selectedMovie.title}</h2>
-            <img src={`https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`} alt={selectedMovie.title} />
-            <p>{selectedMovie.overview}</p>
-          </div>
+        <div className="movie-container">
+          {movies.map((movie) => (
+            <Link to={`/movies/${movie.id}`} key={movie.id} className="movie-item">
+              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+              <p>{movie.title}</p>
+            </Link>
+          ))}
         </div>
-      )}
 
-      <MoviePagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        onPrevPage={handlePrevPage}
-        onNextPage={handleNextPage}
-      />
-    </div>
+        {selectedMovie && (
+          <div className="movie-details">
+            <div className="details-content">
+              <button className="close" onClick={closeMovieDetails}>
+                &times;
+              </button>
+              <h2>{selectedMovie.title}</h2>
+              <img src={`https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`} alt={selectedMovie.title} />
+              <p>{selectedMovie.overview}</p>
+            </div>
+          </div>
+        )}
+
+        <MoviePagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          onPrevPage={handlePrevPage}
+          onNextPage={handleNextPage}
+        />
+      </div>
+      <FooterPart />
+    </>
   );
 };
 

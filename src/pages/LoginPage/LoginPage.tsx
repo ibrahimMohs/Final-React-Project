@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 //   GoogleLoginResponseOffline,
 // } from "react-google-login";
 import './LoginPage.scss';
+import 'animate.css';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from '@leecheuk/react-google-login';
 import { Link, useNavigate } from 'react-router-dom';
@@ -79,7 +80,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
         <div className="all-of-div">
           <div className="login-page">
             <h1>
-              WELCOME TO <br /> BEST MOVIES{' '}
+              WELCOME TO <br /> MovieLand{' '}
             </h1>
             <h2>Login </h2>
             <div className="container">
@@ -109,12 +110,14 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
                 </Form.Item>
 
                 <div className="remember-forgot">
-                  <Form.Item<FieldType> name="remember" valuePropName="checked" className="remember-forgot-remember">
+                  <Form.Item<FieldType> name="remember" valuePropName="checked" className="remember">
                     <Checkbox>Remember me</Checkbox>
                   </Form.Item>
-                  <Form.Item<FieldType> name="username" valuePropName="checked" className="remember-forgot-forgot">
-                    <Checkbox>forgot your password?</Checkbox>
-                  </Form.Item>
+                  <div>
+                    <a className="forgot" href="/#">
+                      Forgot password?
+                    </a>
+                  </div>
                 </div>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
