@@ -18,8 +18,11 @@ import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import Subscription from './components/Subscription/Subscription';
 import TVShowsDetail from './components/TVShowsDetails/TVShowsDetail';
 import TVShowsList from './components/TVShows/TVShowsList';
-// eslint-disable-next-line no-import-assign
-const { Content } = Layout;
+import AnimationNow from '../src/components/Animation/Animation';
+import MyAccount from '../src/components/MyAccount/MyAccount';
+import ProfileInformation from './components/ProfileInformation/ProfileInformation';
+
+const { Content, Footer } = Layout;
 
 const App = () => {
   const [userInfo, setUserInfo] = useState<User | undefined>(undefined);
@@ -35,8 +38,11 @@ const App = () => {
 
   const showHeader = location.pathname !== '/login-register' && location.pathname !== '/RegisterPage';
 
+  
+  
   return (
     <>
+    <AnimationNow />
       {showHeader && <Header userInfo={userInfo} />}
       <Layout>
         {userInfo ? (
@@ -51,6 +57,8 @@ const App = () => {
               <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
               <Route path="subscriptions" element={<Subscription />} />
               <Route path="/search" element={<SearchResultsPage />} />
+              <Route path="/my-account" element={<MyAccount/>} />
+              <Route path="/my-account/profile-information" element={<ProfileInformation/>} />
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/FooterPart" element={<FooterPart />} />
             </Routes>
@@ -69,6 +77,8 @@ const App = () => {
             <Route path="/RegisterPage" element={<RegisterPage />} />
             <Route path="/FooterPart" element={<FooterPart />} />
             <Route path="/search" element={<SearchResultsPage />} />
+            <Route path="/my-account" element={<MyAccount/>} />
+            <Route path="/my-account/profile-information" element={<ProfileInformation/>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )}

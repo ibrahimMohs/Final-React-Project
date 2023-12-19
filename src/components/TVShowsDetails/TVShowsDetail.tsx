@@ -3,6 +3,7 @@ import CastDetails from '../CastDetails/CastDetails';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../TVShowsDetails/TVShowsDetail.scss';
+import Animation from '../Animation/Animation';
 
 interface TVShowDetailsProps {}
 
@@ -150,7 +151,7 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Animation />
       )}
     </div>
   );

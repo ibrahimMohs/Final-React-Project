@@ -2,6 +2,7 @@ import '../Carousel/Carousel.scss';
 import { Carousel } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import Animation from '../Animation/Animation';
 
 // Define the structure of a movie object based on the API response
 interface Movie {
@@ -46,7 +47,7 @@ const CarouselCustom: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="loading-container">Loading...</div>;
+    return <div className="loading-container"><Animation /></div>;
   }
 
   return (

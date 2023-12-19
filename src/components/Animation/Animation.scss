@@ -1,0 +1,49 @@
+.popcorn-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5); 
+  }
+  
+  
+  .popcorn-bowl {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  @keyframes pop1 {
+    from { transform: translateY(0); }
+    to { transform: translateY(-300px) translateX(-50px); opacity: 0; }
+  }
+  
+  @keyframes pop2 {
+    from { transform: translateY(0); }
+    to { transform: translateY(-300px) translateX(50px); opacity: 0; }
+  }
+  
+  @keyframes pop3 {
+    from { transform: translateY(0); }
+    to { transform: translateY(-300px) translateX(70px); opacity: 0; }
+  }
+  
+  @keyframes pop4 {
+    from { transform: translateY(0); }
+    to { transform: translateY(-300px) translateX(100px); opacity: 0; }
+  }
+  
+  @keyframes pop5 {
+    from { transform: translateY(0); }
+    to { transform: translateY(-300px) translateX(150px); opacity: 0; }
+  }
+  
+  .popcorn-kernel {
+    animation: pop 1s ease-in-out forwards;
+  }
+  
