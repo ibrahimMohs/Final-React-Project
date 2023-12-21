@@ -2,11 +2,14 @@
 .container{
     position:relative; 
     width: 1550px;
+    height: 650px;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    background: linear-gradient(45deg,#ffaf00, #bb02ff);
+
 
     .card{
         position: relative;
@@ -21,15 +24,11 @@
     }
 
 }
-.container:hover .card{
+
+.container .card.blured {
     filter: blur(20px);
     transform: scale(.9);
     opacity: .5;
-}
-.container .card:hover{
-    filter: blur(0);
-    transform: scale(1);
-    opacity: 1;
 }
 
 .container .card:hover .circle {
@@ -61,8 +60,8 @@
 
 .container .card h2 {
     color: #fff;
-    font-size: 4.5em;
-    padding: 30px 0;
+    font-size: 3.5em;
+    padding: 10px 0;
     
 };
     
@@ -75,7 +74,7 @@
     
 .container .card .content p {
     color: #666;
-    transition: 5s ease-in-out;
+    transition: 2s ease-in-out;
 }
     
 .container .card .content a {
@@ -85,21 +84,41 @@
     text-decoration: none;
     margin-top: 20px;
     transition: .8s ease-in-out;
+    color: white;
 };
 
+.container .card .content a {
+    color: white;
+}
+
 .container .card:nth-child(1) .circle,
-.container .card:nth-child(1).content a { 
+.container .card:nth-child(1) .content a { 
     background: #ffaf00;
 }
 
+.container .card:nth-child(1):hover .content a { 
+    background: rgb(13, 14, 18);
+    color: #ffaf00;
+}
+
 .container .card:nth-child(2) .circle,
-.container .card:nth-child(2).content a {
+.container .card:nth-child(2) .content a {
      background: #da2268;
 }
 
-.container .card:nth-child(3).circle, 
-.container .card:nth-child(3).content a {
+.container .card:nth-child(2):hover .content a {
+    background: rgb(13, 14, 18);
+    color: #da2268;
+}
+
+.container .card:nth-child(3) .circle, 
+.container .card:nth-child(3) .content a {
      background: #bb02ff;
+}
+
+.container .card:nth-child(3):hover .content a {
+    background: rgb(13, 14, 18);
+    color: #bb02ff;
 }
 
 @keyframes colorChange {
@@ -121,7 +140,10 @@
     }
 };
 
-span{
-    color: black;
+.subp{
+    color: rgb(17, 16, 16);
     font-weight: bold;
+}
+subscribe-btn{
+    color: black;
 }

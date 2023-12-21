@@ -83,7 +83,7 @@ const LoginPage: React.FC<LoginPageProps> = (props) => {
               WELCOME TO <br /> MovieLand{' '}
             </h1>
             <h2>Login </h2>
-            <div className="container">
+            <div className="login-container">
               <Form
                 name="basic"
                 labelCol={{ span: 8 }}

@@ -1,5 +1,5 @@
 import './Header.scss';
-import { Badge, Button, Drawer, Dropdown, Input, Menu } from 'antd';
+import { Badge, Button, Drawer, Dropdown, Input, Menu, MenuProps } from 'antd';
 import { BellOutlined, DownOutlined, MenuOutlined, SearchOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../models/user';
@@ -9,7 +9,7 @@ import logo from '../../assets/images/logo.png';
 interface MenuItem {
   key: string;
   label: string;
-  path: string;
+  children?: MenuItem[];
 }
 
 type HeaderProps = {
@@ -22,23 +22,90 @@ export const Header = (props: HeaderProps) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
 
-  const menuItems: MenuItem[] = props.userInfo
-    ? [
-        { key: '/', label: 'Home', path: '/' },
-        { key: '1', label: 'Genre', path: '/genre' },
-        { key: '2', label: 'Movies', path: '/movies' },
-        { key: '3', label: 'TV Shows', path: '/tv-shows' },
-        { key: '4', label: 'Subscriptions', path: '/subscriptions' },
-        // { key: "5", label: "Log in/Register", path: "/login-register" },
-      ]
-    : [
-        { key: '/', label: 'Home', path: '/' },
-        { key: '1', label: 'Genre', path: '/genre' },
-        { key: '2', label: 'Movies', path: '/movies' },
-        { key: '3', label: 'TV Shows', path: '/tv-shows' },
-        { key: '4', label: 'Subscriptions', path: '/subscriptions' },
-        { key: '5', label: 'Log in/Register', path: '/login-register' },
-      ];
+  const menuItems: MenuItem[] = [
+    { key: '/', label: 'Home' },
+    {
+      key: 'SubMenu',
+      label: 'Genre',
+      children: [
+        {
+          label: 'Action',
+          key: '/genre/Action',
+        },
+        {
+          label: 'Adventure',
+          key: '/genre/Adventure',
+        },
+        {
+          label: 'Animation',
+          key: '/genre/Animation',
+        },
+        {
+          label: 'Comedy',
+          key: '/genre/Comedy',
+        },
+        {
+          label: 'Drama',
+          key: '/genre/Drama',
+        },
+        {
+          label: 'Romance',
+          key: '/genre/Romance',
+        },
+        {
+          label: 'War',
+          key: '/genre/War',
+        },
+        {
+          label: 'Crime',
+          key: '/genre/Crime',
+        },
+        {
+          label: 'Documentary',
+          key: '/genre/Documentary',
+        },
+        {
+          label: 'Family',
+          key: '/genre/Family',
+        },
+        {
+          label: 'History',
+          key: '/genre/History',
+        },
+        {
+          label: 'Horror',
+          key: '/genre/Horror',
+        },
+        {
+          label: 'Thriller',
+          key: '/genre/Thriller',
+        },
+        {
+          label: 'Science Fiction',
+          key: '/genre/Science Fiction',
+        },
+        {
+          label: 'Music',
+          key: '/genre/Music',
+        },
+        {
+          label: 'Western',
+          key: '/genre/Western',
+        },
+      ],
+    },
+    { key: '/movies', label: 'Movies' },
+    { key: '/tv-shows', label: 'TV Shows' },
+    { key: '/subscriptions', label: 'Subscriptions' },
+  ];
+
+  if (!props.userInfo) {
+    menuItems.push({ key: '/login-register', label: 'Log in/Register' });
+  }
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    navigate(e.key);
+  };
 
   const onSearch = (value: string) => {
     if (value.trim()) {
@@ -52,18 +119,8 @@ export const Header = (props: HeaderProps) => {
     setDrawerVisible(!drawerVisible);
   };
 
-  // This function should only be declared once
-  const handleMenuClick = (e: any) => {
-    const menuItem = menuItems.find((item) => item.key === e.key);
-    if (menuItem) {
-      navigate(menuItem.path);
-    } else {
-      navigate(`/genre/${e.key}`);
-    }
-  };
-
   const genreMenu = (
-    <Menu onClick={handleMenuClick}>
+    <Menu>
       {/* Use genre names as keys or any other identifier you've set for genres */}
       <Menu.Item key="Action">Action</Menu.Item>
       <Menu.Item key="Adventure">Adventure</Menu.Item>
@@ -87,24 +144,6 @@ export const Header = (props: HeaderProps) => {
     </Menu>
   );
 
-  // This map should be placed directly where you are going to use it
-  const menuItemsComponents = menuItems.map((item) => {
-    if (item.label === 'Genre') {
-      return (
-        <Dropdown overlay={genreMenu} trigger={['click']} key={item.key}>
-          <a href="/" className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-            Genre <DownOutlined />
-          </a>
-        </Dropdown>
-      );
-    }
-    return (
-      <Menu.Item key={item.key}>
-        <Link to={item.path}>{item.label}</Link>
-      </Menu.Item>
-    );
-  });
-
   return (
     <header className="header">
       <Link to="/" className="header-logo">
@@ -116,45 +155,24 @@ export const Header = (props: HeaderProps) => {
       </Button>
 
       <Drawer title="Menu" placement="right" closable={true} onClose={toggleDrawer} open={drawerVisible}>
-        {props.userInfo && (
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/']} className="header-menu">
-            {menuItemsComponents}
-          </Menu>
-        )}
+        <Menu theme="dark" mode="vertical" defaultSelectedKeys={['/']} className="header-menu" items={menuItems} />
       </Drawer>
 
-      {props.userInfo ? (
-        <nav>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/']} className="header-menu">
-            {menuItemsComponents}
-          </Menu>
+      <nav>
+        <Menu theme="dark" onClick={onClick} mode="horizontal" defaultSelectedKeys={['/']} className="header-menu" items={menuItems} />
 
-          <div className="header-tools">
-            {searchActive && (
-              <Input placeholder="Search" onPressEnter={(e) => onSearch(e.currentTarget.value)} onBlur={() => setSearchActive(false)} autoFocus />
-            )}
-            <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
+        <div className="header-tools">
+          {searchActive && (
+            <Input placeholder="Search" onPressEnter={(e) => onSearch(e.currentTarget.value)} onBlur={() => setSearchActive(false)} autoFocus />
+          )}
+          <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
+          {props.userInfo && (
             <Badge count={notificationCount}>
               <BellOutlined className="icon notification-icon" />
             </Badge>
-          </div>
-        </nav>
-      ) : (
-        <>
-          <nav>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['/']} className="header-menu">
-              {menuItemsComponents}
-            </Menu>
-
-            <div className="header-tools">
-              {searchActive && (
-                <Input placeholder="Search" onPressEnter={(e) => onSearch(e.currentTarget.value)} onBlur={() => setSearchActive(false)} autoFocus />
-              )}
-              <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
-            </div>
-          </nav>
-        </>
-      )}
+          )}
+        </div>
+      </nav>
     </header>
   );
 };
