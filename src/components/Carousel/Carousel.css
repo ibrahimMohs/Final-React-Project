@@ -1,0 +1,35 @@
+.slick-track {
+  background-color: #222;
+}
+
+.carousel-image {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 66vh;
+  border-radius: 250px;
+  box-shadow: 1px 1px 3px 3px #c210ab;
+}
+
+.movie-info {
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  color: white;
+}
+
+.carousel-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 66vh;
+  border-radius: 50px;
+  box-shadow: 1px 1px 3px 3px #c210ab;
+}/*# sourceMappingURL=Carousel.css.map */

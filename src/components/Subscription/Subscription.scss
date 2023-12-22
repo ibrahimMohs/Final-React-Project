@@ -1,8 +1,8 @@
 
 .container{
     position:relative; 
-    width: 1550px;
-    height: 650px;
+    width: 1700px;
+    height: 720px;
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -19,7 +19,7 @@
         margin: 20px;
         border-radius: 20px;
         overflow: hidden;
-        transition: .5s ease-in-out;
+        transition: .2s ease-in-out;
 
     }
 
@@ -73,7 +73,7 @@
 };
     
 .container .card .content p {
-    color: #666;
+    color: #666 !important;
     transition: 2s ease-in-out;
 }
     
@@ -103,7 +103,7 @@
 
 .container .card:nth-child(2) .circle,
 .container .card:nth-child(2) .content a {
-     background: #da2268;
+     background: #cd17b4;
 }
 
 .container .card:nth-child(2):hover .content a {
@@ -113,7 +113,7 @@
 
 .container .card:nth-child(3) .circle, 
 .container .card:nth-child(3) .content a {
-     background: #bb02ff;
+     background: #0a6193;
 }
 
 .container .card:nth-child(3):hover .content a {
@@ -141,7 +141,7 @@
 };
 
 .subp{
-    color: rgb(17, 16, 16);
+    color:#666 !important;
     font-weight: bold;
 }
 subscribe-btn{

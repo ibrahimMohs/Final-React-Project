@@ -1,0 +1,45 @@
+.cast-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-left: 30px;
+  margin-right: -10px;
+}
+
+.parts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.movie-details {
+  background-color: #333;
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+}
+.movie-details h1 {
+  color: white;
+  margin-left: 20px;
+}
+.movie-details h2 {
+  color: white;
+  margin-left: 20px;
+}
+.movie-details li {
+  color: white;
+}
+.movie-details p {
+  color: white;
+}
+.movie-details a {
+  color: white;
+}
+
+.movie-img {
+  width: 330px;
+}
+
+.trailers-part {
+  display: flex;
+  gap: 20px;
+}/*# sourceMappingURL=MovieDetails.css.map */

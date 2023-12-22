@@ -1,16 +1,16 @@
-$font-family:'DM Serif Display', serif;
-
 .main {
   position: relative;
 }
+
 .background {
   position: absolute;
   width: 100%;
   height: 102%;
-
 }
+
 .login-page {
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
   position: relative;
   box-shadow: 1px 3px 1px 3px black, 0px 5px 5px 3px black;
   margin-top: 100px;
@@ -18,22 +18,23 @@ $font-family:'DM Serif Display', serif;
   padding-left: 100px;
   padding-right: 130px;
   font-size: medium;
-  h1{
-    font-family: $font-family;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    filter: drop-shadow(3px 3px 3px #094e86);
-  }
-  h2{
-    font-family:  $font-family;
-    color: white;
-    margin-top: 30px;
-    margin-left: 30px;
-    font-weight: bold;
-    filter: drop-shadow(3px 3px 3px #094e86);
-  }
 }
+.login-page h1 {
+  font-family: "DM Serif Display", serif;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  filter: drop-shadow(3px 3px 3px #094e86);
+}
+.login-page h2 {
+  font-family: "DM Serif Display", serif;
+  color: white;
+  margin-top: 30px;
+  margin-left: 30px;
+  font-weight: bold;
+  filter: drop-shadow(3px 3px 3px #094e86);
+}
+
 .password {
   font-weight: 300px;
   display: grid;
@@ -46,18 +47,20 @@ $font-family:'DM Serif Display', serif;
   width: 200px;
   height: 30px;
 }
+
 .checkbox {
   display: flex;
   gap: 2px;
 }
+
 a {
   text-decoration: none;
   color: #000;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
+a:hover {
+  text-decoration: underline;
+}
+
 .button {
   background-color: #000000;
   color: #fff;
@@ -70,48 +73,49 @@ a {
   height: 35px;
   margin-top: 20px;
 }
-.button:hover{
+
+.button:hover {
   background-color: blue;
 }
 
 .all-of-div {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   margin-left: 600px;
   font-weight: bold;
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  .email {
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-  }
 }
+.all-of-div form {
+  display: flex;
+  flex-direction: column;
+}
+.all-of-div .email {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
 .break {
   display: flex;
   align-items: center;
   margin-left: 110px;
-
-  hr {
-    width: 12%;
-    height: 0px;
-  }
-  .hr1 {
-    margin-left: 5px;
-    margin-right: 10px;
-  }
-
-  .hr2 {
-    margin-left: 10px;
-    margin-right: 0px;
-  }
 }
-p{
+.break hr {
+  width: 12%;
+  height: 0px;
+}
+.break .hr1 {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+.break .hr2 {
+  margin-left: 10px;
+  margin-right: 0px;
+}
+
+p {
   color: white !important;
 }
+
 .google-login-button {
   border-radius: 8px !important;
   background: #fff !important;
@@ -122,11 +126,11 @@ p{
   justify-content: center;
   border: 1px solid #5b5b5b !important;
   margin-top: 20px;
-  color:black;
-  span {
-    color: #000;
-    font-weight: 600 !important;
-  }
+  color: black;
+}
+.google-login-button span {
+  color: #000;
+  font-weight: 600 !important;
 }
 
 hr {
@@ -144,27 +148,27 @@ hr {
   font-size: 12px;
   color: white;
   font-size: 15px;
-  .login-footer:hover {
-    background-color: black;
-  }
-  a {
-    text-decoration: none;
-    color: inherit !important;
-    font-weight: 500;
-    font-size: 16px;
-  }
+}
+.login-footer .login-footer:hover {
+  background-color: black;
+}
+.login-footer a {
+  text-decoration: none;
+  color: inherit !important;
+  font-weight: 500;
+  font-size: 16px;
 }
 
-.remember-forgot{
+.remember-forgot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 15px;
-  .remember{
-    width: 200px;
-    margin-top: 22px;
-  }
-  .forgot {
-      color: #000 !important;
-  }
 }
+.remember-forgot .remember {
+  width: 200px;
+  margin-top: 22px;
+}
+.remember-forgot .forgot {
+  color: #000 !important;
+}/*# sourceMappingURL=LoginPage.css.map */

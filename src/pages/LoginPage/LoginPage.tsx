@@ -10,7 +10,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from '@leecheuk/react-google-login';
 import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../models/user';
-import background from '../../assets/images/mainphot.jpg';
+import background from '../../assets/images/pop3.jpg';
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;

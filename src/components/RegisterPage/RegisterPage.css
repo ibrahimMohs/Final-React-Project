@@ -1,0 +1,44 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  background-color: #222;
+}
+.form-container .all-forms {
+  font-family: "DM Serif Display", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 770px;
+  border: 5px solid #246de1;
+  padding: 50px;
+  margin: 20px;
+  background-color: lightblue;
+  font-style: oblique;
+  font-weight: bold;
+  font-size: 25px !important;
+  border-radius: 50px;
+}
+.form-container .ant-select-selection-item {
+  padding-inline-end: 46px !important;
+}
+
+.register-background {
+  position: absolute;
+  opacity: 20%;
+  height: 100%;
+  width: 100%;
+}
+
+.form-part {
+  width: 500px;
+}
+
+.register-button {
+  margin-left: 70px;
+  margin-top: 25px;
+}
+
+.agreement {
+  font-family: "DM Serif Display", serif;
+  color: #0958d9 !important;
+}/*# sourceMappingURL=RegisterPage.css.map */

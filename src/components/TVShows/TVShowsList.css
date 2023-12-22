@@ -1,0 +1,38 @@
+.tv-shows-list {
+  font-family: "Playfair Display", serif;
+  color: rgb(13, 139, 174);
+  font-style: oblique;
+  background-color: #222;
+}
+.tv-shows-list p {
+  color: white !important;
+}
+.tv-shows-list h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.tv-show-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.tv-show-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+.tv-show-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tv-show-item p {
+  width: 100%;
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+}/*# sourceMappingURL=TVShowsList.css.map */

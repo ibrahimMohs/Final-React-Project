@@ -80,9 +80,23 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
         <div className="tvshow-details">
           <h1>{tvShowDetails.name}</h1>
           <div className="parts">
-            <img className="show-img" src={`https://image.tmdb.org/t/p/w500/${tvShowDetails.poster_path}`} alt={tvShowDetails.name} />
             <div>
+
+            <img className="show-img" src={`https://image.tmdb.org/t/p/w500/${tvShowDetails.poster_path}`} alt={tvShowDetails.name} />
+            <h2>About:</h2>
               <p>{tvShowDetails.overview}</p>
+              <div>
+                <h2>Trailers:</h2>
+                <ul className="trailers-part">
+                  {trailers.map((trailer) => (
+                    <li key={trailer.id}>
+                      <iframe title="Trailer" width="560" height="315" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0"></iframe>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div>
 
               <div>
                 <h2>Genres:</h2>
@@ -113,19 +127,7 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
                   ))}
                 </ul>
               </div>
-
-              <div>
-                <h2>Trailers:</h2>
-                <ul>
-                  {trailers.map((trailer) => (
-                    <li key={trailer.id}>
-                      <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" rel="noopener noreferrer">
-                        {trailer.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+     
             </div>
           </div>
 

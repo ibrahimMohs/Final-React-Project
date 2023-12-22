@@ -1,22 +1,29 @@
 $font-family: 'Playfair Display', serif;
 .cast-list {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    margin-left: 30px;
+    margin-right: -10px;
 }
 
 .parts{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    margin-left: 20px;
+    margin-right: 20px;
    
 }
 .movie-details{
     background-color: #333;
     font-family: $font-family;
+    font-size: 15px;
     h1{
         color: white;
+        margin-left: 20px;
     }
     h2{
         color: white;
+        margin-left: 20px;
     }
     li{
         color: white;
@@ -30,5 +37,9 @@ $font-family: 'Playfair Display', serif;
    
 }
 .movie-img{
-    width: 50%;
+    width: 330px;
+}
+.trailers-part{
+    display: flex;
+    gap: 20px;
 }
