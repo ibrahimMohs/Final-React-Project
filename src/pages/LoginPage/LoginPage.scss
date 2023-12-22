@@ -5,37 +5,35 @@ $font-family:'DM Serif Display', serif;
 }
 .background {
   position: absolute;
-  width: 100%;
-  height: 102%;
+  width: 1000px;
+  height: 800px;
+  
 
 }
 .login-page {
-  backdrop-filter: blur(20px);
   position: relative;
-  box-shadow: 1px 3px 1px 3px black, 0px 5px 5px 3px black;
   margin-top: 100px;
   margin-bottom: 100px;
-  padding-left: 100px;
-  padding-right: 130px;
+  padding-right: 200px;
   font-size: medium;
   h1{
     font-family: $font-family;
-    color: white;
+    color:rgb(33 33 209);
     font-weight: bold;
     text-align: center;
-    filter: drop-shadow(3px 3px 3px #094e86);
+    margin-top: 10px;
   }
   h2{
     font-family:  $font-family;
-    color: white;
+    color:rgb(9, 9, 71) ;
     margin-top: 30px;
     margin-left: 30px;
     font-weight: bold;
-    filter: drop-shadow(3px 3px 3px #094e86);
+    filter: drop-shadow(3px 3px 3px #4278ae);
   }
 }
 .password {
-  font-weight: 300px;
+  font-weight: 500;
   display: grid;
   gap: 5px;
 }
@@ -43,7 +41,7 @@ $font-family:'DM Serif Display', serif;
 .input {
   border-radius: 5px;
   border: 1px solid;
-  width: 200px;
+  width: 300px;
   height: 30px;
 }
 .checkbox {
@@ -60,7 +58,7 @@ a {
 }
 .button {
   background-color: #000000;
-  color: #fff;
+  color: #0d0c0c;
   border: none;
   padding: 10px 20px;
   font-size: 14px;
@@ -76,10 +74,14 @@ a {
 
 .all-of-div {
   display: flex;
-  justify-content:center;
-  margin-left: 600px;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
   font-weight: bold;
+  border-radius: 10px;
+  border-color: black;
   
+
   form {
     display: flex;
     flex-direction: column;
@@ -109,18 +111,15 @@ a {
     margin-right: 0px;
   }
 }
-p{
-  color: white !important;
-}
+
 .google-login-button {
   border-radius: 8px !important;
   background: #fff !important;
-  box-shadow: -9px 4px 76px 0px rgba(0, 0, 0, 0.25) !important;
   width: 308px;
   height: 45px;
   align-items: center;
   justify-content: center;
-  border: 1px solid #5b5b5b !important;
+  border: 1px solid #080808 !important;
   margin-top: 20px;
   color:black;
   span {
@@ -142,7 +141,7 @@ hr {
   margin-left: 70px;
   margin-top: -15px;
   font-size: 12px;
-  color: white;
+  color: rgb(10, 9, 9);
   font-size: 15px;
   .login-footer:hover {
     background-color: black;
@@ -151,7 +150,8 @@ hr {
     text-decoration: none;
     color: inherit !important;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 19px;
+    color: black;
   }
 }
 
@@ -159,12 +159,14 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: large;
+
   .remember{
     width: 200px;
-    margin-top: 22px;
+    margin-top: 30px;
   }
   .forgot {
-      color: #000 !important;
+    font-size: 15px;
+    color: #000 !important;
   }
 }

@@ -1,4 +1,4 @@
-
+$font-family:'DM Serif Display', serif;
 .container{
     position:relative; 
     width: 1700px;
@@ -12,6 +12,7 @@
 
 
     .card{
+        font-family: $font-family;
         position: relative;
         width: 300px;
         height: 420px;
@@ -73,8 +74,9 @@
 };
     
 .container .card .content p {
-    color: #666 !important;
+    color: #3a3939 !important;
     transition: 2s ease-in-out;
+    margin-left: 15px
 }
     
 .container .card .content a {

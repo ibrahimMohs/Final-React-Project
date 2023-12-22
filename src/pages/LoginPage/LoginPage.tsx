@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
-// import {
-//   GoogleLogin,
-//   GoogleLoginResponse,
-//   GoogleLoginResponseOffline,
-// } from "react-google-login";
 import './LoginPage.scss';
 import 'animate.css';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from '@leecheuk/react-google-login';
 import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../models/user';
-import background from '../../assets/images/pop3.jpg';
+import React, { useState } from 'react';
+import background from '../../assets/images/bck.png';
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
