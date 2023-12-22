@@ -6,7 +6,7 @@ import background from '../../assets/images/backgroundimg.jpg';
 
 const { Option } = Select;
 
-const API_URL = 'https://194.87.210.5:7001';
+const API_URL = 'https://devedu-az.com:7001';
 
 interface DataNodeType {
   value: string;

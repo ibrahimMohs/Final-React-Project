@@ -8,13 +8,22 @@ import { User } from '../../models/user';
 import React, { useState } from 'react';
 import axios from 'axios';
 import background from '../../assets/images/mainphot.jpg';
+import { API_URL } from '../../consts';
 
-const API_URL = 'https://194.87.210.5:7001'; // Replace with your backend API URL
-
-const loginUser = async (username: string, password: string) => {
-  const response = await axios.post(`${API_URL}/api/movies/login`, { username, password });
+const loginUser = async (email: string, password: string) => {
+  const response = await axios.post(`${API_URL}/api/movies/login`, { email, password });
   return response.data;
 };
+
+function parseJwt(token: string) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
@@ -29,8 +38,11 @@ const onFinish = async (values: { username: string; password: string }) => {
     try {
       const token = await loginUser(values.username, values.password);
       if (token) {
+        const tokenData = parseJwt(token);
+        console.log(tokenData);
         const storage = rememberMe ? localStorage : sessionStorage;
         storage.setItem('authToken', token);
+        storage.setItem('userId', tokenData.Id);
         const user: User = {
           login: values.username,
           name: 'User Name', // You would replace this with the name from the response, if available

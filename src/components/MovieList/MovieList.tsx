@@ -1,4 +1,5 @@
 import '../MovieList/MovieList.scss';
+import { API_URL } from '../../consts';
 import { Link } from 'react-router-dom';
 import FooterPart from '../FooterPart/FooterPart';
 import MoviePagination from './MoviePagination';
@@ -31,7 +32,7 @@ const MovieList: React.FC = () => {
         }));
         setMovies(response.data.results);
         setTotalPages(response.data.total_pages);
-        console.log("Current watchlist:", watchlist);
+        console.log('Current watchlist:', watchlist);
       } catch (error) {
         console.error('Error fetching movies:', error);
       }
@@ -63,12 +64,32 @@ const MovieList: React.FC = () => {
   const addToWatchlist = (e: React.MouseEvent<HTMLButtonElement>, movieToAdd: Movie) => {
     e.stopPropagation(); // This stops the event from bubbling up to parent elements
 
-    setWatchlist((prevWatchlist) => {
-      if (prevWatchlist.find((m) => m.id === movieToAdd.id)) {
-        return prevWatchlist; // If already in watchlist, do nothing
-      }
-      return [...prevWatchlist, { ...movieToAdd, inWatchlist: true }];
-    });
+    if (watchlist.find((m) => m.id === movieToAdd.id)) {
+      return; // If already in watchlist, do nothing
+    }
+    let token = sessionStorage.getItem('authToken');
+    let userId = sessionStorage.getItem('userId');
+    if (!userId) {
+      userId = localStorage.getItem('userId');
+      token = localStorage.getItem('authToken');
+    }
+    if (userId) {
+      axios
+        .post(
+          `${API_URL}/api/movies/watch-list`,
+          { userId: userId, mediaId: movieToAdd.id },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((response) => console.log(response));
+      setWatchlist([...watchlist, { ...movieToAdd, inWatchlist: true }]);
+    } else {
+      // this should be changed to the Modal window
+      alert('some troubles with user');
+    }
   };
 
   return (
@@ -92,13 +113,10 @@ const MovieList: React.FC = () => {
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
                 <p>{movie.title}</p>
               </Link>
-              <button onClick={(e) => addToWatchlist(e, movie)}>
-                {movie.inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
-              </button>
+              <button onClick={(e) => addToWatchlist(e, movie)}>{movie.inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}</button>
             </div>
           ))}
         </div>
-
 
         {selectedMovie && (
           <div className="movie-details">
