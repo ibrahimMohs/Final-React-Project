@@ -60,3 +60,14 @@ $font-family: 'Playfair Display', serif;
     font-family: $font-family;
     font-style: oblique;
 }
+
+@media screen and (max-width: 1100px){
+  .footer-part{
+        display: grid;
+        justify-content: center;
+
+    .left-part{
+        display: grid;
+    }
+  }
+}

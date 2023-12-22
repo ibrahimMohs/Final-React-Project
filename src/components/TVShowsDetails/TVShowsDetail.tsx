@@ -89,7 +89,9 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
                 <h2>Genres:</h2>
                 <ul>
                   {tvShowDetails.genres.map((genre) => (
-                    <li key={genre.id}>{genre.name}</li>
+                    <li key={genre.id}>
+                    <Link to={`/genre/${genre.name}`}>{genre.name}</Link>
+                    </li>
                   ))}
                 </ul>
               </div>

@@ -1,9 +1,12 @@
 import '../RegisterPage/RegisterPage.scss';
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
 import React, { useState } from 'react';
+import axios from 'axios';
 import background from '../../assets/images/backgroundimg.jpg';
 
 const { Option } = Select;
+
+const API_URL = 'https://194.87.210.5:7001';
 
 interface DataNodeType {
   value: string;
@@ -37,10 +40,48 @@ const tailFormItemLayout = {
 
 const Register: React.FC = () => {
   const [form] = Form.useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: {
+    email: string;
+    password: string;
+    confirm: string;
+    nickname: string;
+    phone: string;
+    prefix: string;
+    gender: string;
+    captcha: string;
+    agreement: boolean;
+  }) => {
     console.log('Received values of form: ', values);
+    if (isSubmitting) {
+      return;
+    }
+
+      setIsSubmitting(true); 
+    
+    if (!values.agreement) {
+      return;
+    }
+
+    const { confirm, prefix, agreement, ...formData } = values; 
+
+    try {
+      const registrationData = {
+        ...formData,
+        phone: `${prefix}${values.phone}`, 
+      };
+
+      const response = await axios.post(`${API_URL}/api/movies/register`, registrationData);
+      console.log('Registration successful', response.data);
+      form.resetFields();
+    } catch (error) {
+      console.error('Registration failed:', error);
+    } finally {
+      setIsSubmitting(false); 
+    }
   };
+
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -212,7 +253,8 @@ const Register: React.FC = () => {
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
-            <Button className="register-button" type="primary" htmlType="submit">
+            <Button
+                className="register-button" type="primary" htmlType="submit"  disabled={isSubmitting} >
               Register
             </Button>
           </Form.Item>

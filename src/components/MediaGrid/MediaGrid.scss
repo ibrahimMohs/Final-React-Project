@@ -10,6 +10,35 @@ img{
     border-radius: 8px;
 }
 
-// .grid-item{
-//     width: 85px;
-// }
+@media screen and (max-width: 638px){
+    .media-grid{
+
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+    
+        }
+    }
+}
+
+@media screen and (max-width: 463px){
+    .media-grid{
+
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+    
+        }
+    }
+}
+
+@media screen and (max-width: 350px){
+    .media-grid{
+
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+    
+        }
+    }
+}

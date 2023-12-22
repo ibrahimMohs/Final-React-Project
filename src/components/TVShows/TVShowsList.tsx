@@ -10,6 +10,7 @@ interface TVShow {
   name: string;
   overview: string;
   poster_path: string;
+  inWatchlist?: boolean;
 }
 
 const TVShowsList: React.FC = () => {
@@ -17,20 +18,27 @@ const TVShowsList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [selectedTVShow, setSelectedTVShow] = useState<TVShow | null>(null);
+  const [watchlist, setWatchlist] = useState<TVShow[]>([]);
+
   useEffect(() => {
     const fetchTVShows = async () => {
       try {
         const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
         const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`);
+        const updatedTVShows = response.data.results.map((tvShow: TVShow) => ({
+          ...tvShow,
+          inWatchlist: !!watchlist.find(show => show.id === tvShow.id),
+        }));
         setTVShows(response.data.results);
         setTotalPages(response.data.total_pages);
+        console.log("Current watchlist:", watchlist);
       } catch (error) {
         console.error('Error fetching TV shows:', error);
       }
     };
 
     fetchTVShows();
-  }, [currentPage]);
+  }, [currentPage, watchlist]);
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
@@ -52,6 +60,16 @@ const TVShowsList: React.FC = () => {
     setSelectedTVShow(null);
   };
 
+  const addToWatchlist = (tvShowToAdd: TVShow) => {
+    setWatchlist((prevWatchlist) => {
+      if (prevWatchlist.find((show) => show.id === tvShowToAdd.id)) {
+        return prevWatchlist; // If already in watchlist, do nothing
+      }
+      return [...prevWatchlist, { ...tvShowToAdd, inWatchlist: true }];
+    });
+  };
+
+
   return (
     <>
       <div className="tv-shows-list">
@@ -67,10 +85,13 @@ const TVShowsList: React.FC = () => {
 
         <div className="tv-show-container">
           {tvShows.map((tvShow) => (
-            <Link to={`/tv-shows/${tvShow.id}`} key={tvShow.id} className="tv-show-item">
-              <img src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`} alt={tvShow.name} />
-              <p>{tvShow.name}</p>
-            </Link>
+            <div key={tvShow.id} className="tv-show-item">
+              <Link to={`/tv-shows/${tvShow.id}`}>
+                <img src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`} alt={tvShow.name} />
+                <p>{tvShow.name}</p>
+              </Link>
+              <button onClick={() => addToWatchlist(tvShow)}>{tvShow.inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}</button>
+            </div>
           ))}
         </div>
 

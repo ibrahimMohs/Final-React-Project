@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Animation from '../Animation/Animation';
 
-// Assuming you have a type for your user profile data
+
 type UserProfile = {
   name: string;
   email: string;
   username: string;
-  // add any other relevant fields
 };
 
 const ProfileInformation: React.FC = () => {
@@ -15,19 +14,17 @@ const ProfileInformation: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Mocked function to simulate fetching profile data
-    // In a real app, you would make an API call here
     const fetchProfile = async () => {
       try {
         setLoading(true);
-        // Replace with an actual API call
+
         const response: UserProfile = await new Promise((resolve) => {
           setTimeout(() => {
             resolve({
               name: 'John Doe',
               email: 'john.doe@example.com',
               username: 'johndoe',
-              // populate other fields
+
             });
           }, 1000);
         });
