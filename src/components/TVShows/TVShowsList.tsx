@@ -4,6 +4,7 @@ import FooterPart from '../FooterPart/FooterPart';
 import React, { useEffect, useState } from 'react';
 import TVShowPagination from '../MovieList/MoviePagination';
 import axios from 'axios';
+import { apiKey } from '../../consts';
 
 interface TVShow {
   id: number;
@@ -23,7 +24,6 @@ const TVShowsList: React.FC = () => {
   useEffect(() => {
     const fetchTVShows = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
         const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`);
         const updatedTVShows = response.data.results.map((tvShow: TVShow) => ({
           ...tvShow,

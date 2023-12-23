@@ -1,12 +1,12 @@
 import '../RegisterPage/RegisterPage.scss';
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import background from '../../assets/images/backgroundimg.jpg';
+import { API_URL } from '../../consts';
 
 const { Option } = Select;
-
-const API_URL = 'https://devedu-az.com:7001';
 
 interface DataNodeType {
   value: string;
@@ -41,6 +41,23 @@ const tailFormItemLayout = {
 const Register: React.FC = () => {
   const [form] = Form.useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+  const [captchaCode, setCaptchaCode] = useState('');
+
+  useEffect(() => {
+    createCaptcha(); // Generate captcha on component load
+  }, []);
+
+  const createCaptcha = () => {
+    let charsArray = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+    let lengthOtp = 6;
+    let captcha = [];
+    for (let i = 0; i < lengthOtp; i++) {
+      let index = Math.floor(Math.random() * charsArray.length); 
+      captcha.push(charsArray[index]);
+    }
+    setCaptchaCode(captcha.join(""));
+  };
 
   const onFinish = async (values: {
     email: string;
@@ -54,11 +71,18 @@ const Register: React.FC = () => {
     agreement: boolean;
   }) => {
     console.log('Received values of form: ', values);
+
     if (isSubmitting) {
       return;
     }
 
-      setIsSubmitting(true); 
+    if (values.captcha !== captchaCode) {
+      alert("Invalid Captcha. Try Again");
+      createCaptcha(); // Regenerate a new CAPTCHA
+      return;
+    }
+
+    setIsSubmitting(true); 
     
     if (!values.agreement) {
       return;
@@ -75,6 +99,7 @@ const Register: React.FC = () => {
       const response = await axios.post(`${API_URL}/api/movies/register`, registrationData);
       console.log('Registration successful', response.data);
       form.resetFields();
+      navigate('/login-register');
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {
@@ -216,27 +241,28 @@ const Register: React.FC = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item label="Captcha" extra="We must make sure that your are a human.">
-            <Row gutter={8}>
-              <Col span={12}>
-                <Form.Item
-                  name="captcha"
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input the captcha you got!',
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Button>Get captcha</Button>
-              </Col>
-            </Row>
-          </Form.Item>
+          <Form.Item label="Captcha" extra="We must make sure that you are a human.">
+          <Row gutter={8}>
+            <Col span={12}>
+              <Form.Item
+                name="captcha"
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input the captcha you got!',
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Button onClick={createCaptcha}>Get captcha</Button>
+            </Col>
+          </Row>
+          <div>{captchaCode}</div> {/* Display generated captcha */}
+        </Form.Item>
 
           <Form.Item
             name="agreement"

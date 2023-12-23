@@ -4,6 +4,7 @@ import Animation from '../Animation/Animation';
 import CastDetails from '../CastDetails/CastDetails';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiKey } from '../../consts';
 
 interface MovieDetailsProps {}
 
@@ -41,8 +42,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
-
         const movieResponse = await axios.get<MovieDetailsData>(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`);
         const basicDetails = movieResponse.data;
 

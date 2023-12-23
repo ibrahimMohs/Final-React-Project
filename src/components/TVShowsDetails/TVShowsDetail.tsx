@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../TVShowsDetails/TVShowsDetail.scss';
 import Animation from '../Animation/Animation';
+import { apiKey } from '../../consts';
 
 interface TVShowDetailsProps {}
 
@@ -40,7 +41,6 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
   useEffect(() => {
     const fetchTVShowDetails = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
         const tvShowResponse = await axios.get<TVShowDetailsData>(`https://api.themoviedb.org/3/tv/${tvShowId}?api_key=${apiKey}&language=en-US`);
         const basicDetails: TVShowDetailsData = tvShowResponse.data;
 

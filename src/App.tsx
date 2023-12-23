@@ -7,20 +7,22 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { User } from './models/user';
 import { useState } from 'react';
+import AnimationNow from '../src/components/Animation/Animation';
 import CastDetails from './components/CastDetails/CastDetails';
 import FooterPart from './components/FooterPart/FooterPart';
 import GenreMovies from './components/GenreMovies/GenreMovies';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import MovieList from './components/MovieList/MovieList';
+import MyAccount from '../src/components/MyAccount/MyAccount';
+import ProfileInformation from './components/ProfileInformation/ProfileInformation';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import Subscription from './components/Subscription/Subscription';
 import TVShowsDetail from './components/TVShowsDetails/TVShowsDetail';
 import TVShowsList from './components/TVShows/TVShowsList';
-import AnimationNow from '../src/components/Animation/Animation';
-import MyAccount from '../src/components/MyAccount/MyAccount';
-import ProfileInformation from './components/ProfileInformation/ProfileInformation';
+import Watchlist from './components/WatchList/WatchList';
+import Ratings from './components/Ratings/Ratings';
 
 const { Content, Footer } = Layout;
 
@@ -38,11 +40,9 @@ const App = () => {
 
   const showHeader = location.pathname !== '/login-register' && location.pathname !== '/RegisterPage';
 
-  
-  
   return (
     <>
-    <AnimationNow />
+      <AnimationNow />
       {showHeader && <Header userInfo={userInfo} />}
       <Layout>
         {userInfo ? (
@@ -57,8 +57,8 @@ const App = () => {
               <Route path="tv-shows/:tvShowId" element={<TVShowsDetail />} />
               <Route path="subscriptions" element={<Subscription />} />
               <Route path="/search" element={<SearchResultsPage />} />
-              <Route path="/my-account" element={<MyAccount/>} />
-              <Route path="/my-account/profile-information" element={<ProfileInformation/>} />
+              <Route path="/my-account" element={<MyAccount />} />
+              <Route path="/my-account/profile-information" element={<ProfileInformation />} />
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/FooterPart" element={<FooterPart />} />
             </Routes>
@@ -77,8 +77,10 @@ const App = () => {
             <Route path="/RegisterPage" element={<RegisterPage />} />
             <Route path="/FooterPart" element={<FooterPart />} />
             <Route path="/search" element={<SearchResultsPage />} />
-            <Route path="/my-account" element={<MyAccount/>} />
-            <Route path="/my-account/profile-information" element={<ProfileInformation/>} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/my-account/profile-information" element={<ProfileInformation />} />
+            <Route path="/my-account/watch-list" element={<Watchlist />} />
+            <Route path="/my-account/ratings" element={<Ratings />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )}

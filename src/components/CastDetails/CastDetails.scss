@@ -11,3 +11,12 @@
         }
     }
 }
+
+.castInfo{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .castImage{
+        width: 50%;
+    }
+}
