@@ -2,6 +2,7 @@ import '../CastDetails/CastDetails.scss';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiKey } from '../../consts';
 
 interface CastMemberDetails {
   id: number;
@@ -10,39 +11,68 @@ interface CastMemberDetails {
   poster_path: string;
   release_date: string;
   media_type: 'movie' | 'tv';
+  name: string;
+  profile_path: string;
+  biography: string;
+  birthday: string;
+  place_of_birth: string;
+  known_for_department: string;
 }
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; // Base URL for images
 
 const CastDetails = () => {
   const { castId } = useParams<{ castId: string }>();
+  const [castName, setCastName] = useState<string>('');
   const [movies, setMovies] = useState<CastMemberDetails[]>([]);
   const [tvShows, setTvShows] = useState<CastMemberDetails[]>([]);
+  const [castPersonalDetails, setCastPersonalDetails] = useState<CastMemberDetails | null>(null);
+
 
   useEffect(() => {
     const fetchCastDetails = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
-        const response = await axios.get(`https://api.themoviedb.org/3/person/${castId}/combined_credits?api_key=${apiKey}&language=en-US`);
-        console.log('Cast details:', response.data);
+        // Fetch the cast member's personal details
 
-        const castData: CastMemberDetails[] = response.data.cast;
-
+        const personalDetailsResponse = await axios.get(`https://api.themoviedb.org/3/person/${castId}?api_key=${apiKey}&language=en-US`);
+        setCastPersonalDetails(personalDetailsResponse.data);
+  
+        // Fetch the cast member's movie and TV show credits
+        const creditsResponse = await axios.get(`https://api.themoviedb.org/3/person/${castId}/combined_credits?api_key=${apiKey}&language=en-US`);
+        const castData: CastMemberDetails[] = creditsResponse.data.cast;
+  
         const moviesData = castData.filter((item: CastMemberDetails) => item.media_type === 'movie');
         const tvShowsData = castData.filter((item: CastMemberDetails) => item.media_type === 'tv');
-
+  
         setMovies(moviesData);
         setTvShows(tvShowsData);
       } catch (error) {
         console.error('Error fetching cast details:', error);
       }
     };
-
+  
     fetchCastDetails();
   }, [castId]);
+  
 
   return (
+    <div className='cast-details'>
+    <h1>{castPersonalDetails?.name}</h1>
+    {castPersonalDetails && (
+      <div className='castInfo'>
+        <img className='castImage' src={`${IMAGE_BASE_URL}${castPersonalDetails.profile_path}`} alt={castPersonalDetails.name} />
+        <div>
+          <h2>Personal Info</h2>
+        <p>Birthday: {castPersonalDetails.birthday}</p>
+        <p>Place of Birth: {castPersonalDetails.place_of_birth}</p>
+        <p>Known For: {castPersonalDetails.known_for_department}</p>
+        <p>Biography: {castPersonalDetails.biography}</p>
+        {/* Display other information as needed */}
+        </div>
+      </div>
+    )}
     <div className='movie-list-all'>
+      <h1>{castName}</h1>
       <div>
         <h2>Movies</h2>
         <div className="moviesList">
@@ -74,6 +104,7 @@ const CastDetails = () => {
             <p>No TV shows found</p>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

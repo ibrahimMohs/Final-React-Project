@@ -18,24 +18,16 @@ const items: MenuProps['items'] = [
   getItem('My Account', 'grp', null, [getItem('Profile Information', '13')], 'group'),
 
   getItem('My Movies', 'sub1', <VideoCameraOutlined />, [
-    getItem('Watchlist', 'sub5', null, [getItem('Watchlist 1', '1'), getItem('Watchlist 2', '2')]),
-    getItem('Favorites', 'sub6', null, [getItem('Recently Added', '3')]),
+    getItem('My Watchlist', 'sub5', null),
+    getItem('My Ratings', 'sub6', null),
   ]),
 
-  getItem('Subscription Details', 'sub2', <CreditCardOutlined />, [
-    getItem('View Subscription Plan', '5'),
-    getItem('Update Payment Method', '6'),
-    // getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-  ]),
+  // getItem('Subscription Details', 'sub2', <CreditCardOutlined />, [
+  //   getItem('View Subscription Plan', '5'),
+  //   getItem('Update Payment Method', '6'),
+  // ]),
 
   { type: 'divider' },
-
-  // getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-  //   getItem('Option 9', '9'),
-  //   getItem('Option 10', '10'),
-  //   getItem('Option 11', '11'),
-  //   getItem('Option 12', '12'),
-  // ]),
 
 
 ];

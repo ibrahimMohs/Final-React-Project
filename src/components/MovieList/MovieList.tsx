@@ -1,5 +1,5 @@
 import '../MovieList/MovieList.scss';
-import { API_URL } from '../../consts';
+import { API_URL, apiKey } from '../../consts';
 import { Link } from 'react-router-dom';
 import FooterPart from '../FooterPart/FooterPart';
 import MoviePagination from './MoviePagination';
@@ -24,7 +24,6 @@ const MovieList: React.FC = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const apiKey = 'f1a02268af3a2e076dc84ca1a6aaaefe';
         const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${currentPage}`);
         const updatedMovies = response.data.results.map((movie: Movie) => ({
           ...movie,
