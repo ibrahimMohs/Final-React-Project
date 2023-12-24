@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../models/user';
 import React, { useState } from 'react';
 import axios from 'axios';
-import background from '../../assets/images/bck.jpg';
+import background from '../../assets/images/bck.png';
 import { API_URL } from '../../consts';
 
 const loginUser = async (email: string, password: string) => {
@@ -86,7 +86,7 @@ const onFinish = async (values: { username: string; password: string }) => {
               WELCOME TO <br /> MovieLand{' '}
             </h1>
             <h2>Login </h2>
-            <div className="container">
+            <div className="login-container">
               <Form
                 name="basic"
                 labelCol={{ span: 8 }}

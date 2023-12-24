@@ -97,6 +97,7 @@ export const Header = (props: HeaderProps) => {
     { key: '/movies', label: 'Movies' },
     { key: '/tv-shows', label: 'TV Shows' },
     { key: '/subscriptions', label: 'Subscriptions' },
+    { key: '/my-account', label: 'My Account' },
   ];
 
   if (!props.userInfo) {
