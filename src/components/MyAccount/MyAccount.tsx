@@ -1,6 +1,10 @@
-import { AppstoreOutlined, CreditCardOutlined, PlayCircleOutlined, MailOutlined, SettingOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { VideoCameraOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ProfileInformation from '../ProfileInformation/ProfileInformation';
+import Ratings from '../Ratings/Ratings';
+import Watchlist from '../WatchList/WatchList';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -15,29 +19,55 @@ function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 }
 
 const items: MenuProps['items'] = [
-  getItem('My Account', 'grp', null, [getItem('Profile Information', '13')], 'group'),
+  getItem('My Account', 'grp', null, [getItem('Profile Information', '/my-account/profile-information')], 'group'),
 
   getItem('My Movies', 'sub1', <VideoCameraOutlined />, [
-    getItem('My Watchlist', 'sub5', null),
-    getItem('My Ratings', 'sub6', null),
+    getItem('My Watchlist', 'watchlist', null),
+    getItem('My Ratings', 'ratings', null),
   ]),
-
-  // getItem('Subscription Details', 'sub2', <CreditCardOutlined />, [
-  //   getItem('View Subscription Plan', '5'),
-  //   getItem('Update Payment Method', '6'),
-  // ]),
 
   { type: 'divider' },
 
-
 ];
 
-const MyAccount: React.FC = () => {
+const MyAccount = () => {
+const [activeComponent, setActiveComponent] = useState('profile');
+
+  // Handle menu click
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
+    setActiveComponent(e.key);
   };
 
-  return <Menu onClick={onClick} style={{ width: 256 }} defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="inline" items={items} />;
+  // Render the component based on activeComponent state
+  let contentComponent;
+  switch (activeComponent) {
+    case 'profile':
+      contentComponent = <ProfileInformation />;
+      break;
+    case 'watchlist':
+      contentComponent = <Watchlist />;
+      break;
+    case 'ratings':
+      contentComponent = <Ratings />;
+      break;
+    // ... other cases
+    default:
+      contentComponent = <ProfileInformation />;
+  }
+
+  return (
+    <div style={{ display: 'flex' }}>
+      <Menu
+        onClick={onClick}
+        style={{ width: 256 }}
+        mode="inline"
+        items={items}
+      />
+      <div className="content-area" style={{ flexGrow: 1, padding: '20px' }}>
+        {contentComponent}
+      </div>
+    </div>
+  );
 };
 
 export default MyAccount;

@@ -40,6 +40,7 @@ const Watchlist: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
         },
         body: JSON.stringify({
           userId: userId,
@@ -68,6 +69,7 @@ const Watchlist: React.FC = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
         },
         body: JSON.stringify({
           userId: userId,

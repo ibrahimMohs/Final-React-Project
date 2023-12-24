@@ -73,6 +73,11 @@ const MovieList: React.FC = () => {
       token = localStorage.getItem('authToken');
     }
     if (userId) {
+      console.log(`Sending request to ${API_URL}/api/movies/watch-list with data:`, {
+        userId: userId,
+        mediaId: movieToAdd.id
+      });
+      
       axios
         .post(
           `${API_URL}/api/movies/watch-list`,

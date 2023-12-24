@@ -58,7 +58,6 @@ const App = () => {
               <Route path="subscriptions" element={<Subscription />} />
               <Route path="/search" element={<SearchResultsPage />} />
               <Route path="/my-account" element={<MyAccount />} />
-              <Route path="/my-account/profile-information" element={<ProfileInformation />} />
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/FooterPart" element={<FooterPart />} />
             </Routes>
@@ -78,7 +77,6 @@ const App = () => {
             <Route path="/FooterPart" element={<FooterPart />} />
             <Route path="/search" element={<SearchResultsPage />} />
             <Route path="/my-account" element={<MyAccount />} />
-            <Route path="/my-account/profile-information" element={<ProfileInformation />} />
             <Route path="/my-account/watch-list" element={<Watchlist />} />
             <Route path="/my-account/ratings" element={<Ratings />} />
             <Route path="*" element={<NotFoundPage />} />
