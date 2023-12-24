@@ -56,3 +56,13 @@ $font-family:'DM Serif Display', serif;
   }
 
 }
+
+@media screen and (max-width:450px){ 
+  .form-part{
+    width: 230px;
+  }
+  .all-forms{
+    height: 920px !important;
+  }
+  
+}
