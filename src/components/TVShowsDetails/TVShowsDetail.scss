@@ -29,3 +29,43 @@ $font-family: 'Playfair Display', serif;
     display: flex;
     gap: 20px;
 }
+
+.trailer-class1{
+    width: 650px;
+    height: 350px;
+}
+
+@media screen and (max-width:900px) {
+    .show-img{
+        width: 55%;
+    }
+    .parts{
+        display: block;
+    }
+    .cast-list{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .trailer-class1{
+        width: 350px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .show-img{
+        width: 55%;
+        height: 40%;
+    }
+    .parts{
+        display: block;
+    }
+    .cast-list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .trailer-class1{
+        width: 250px;
+        height: 150px;
+    }
+}

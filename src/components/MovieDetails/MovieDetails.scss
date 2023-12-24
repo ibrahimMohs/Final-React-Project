@@ -42,4 +42,56 @@ $font-family: 'Playfair Display', serif;
 .trailers-part{
     display: flex;
     gap: 20px;
+    flex-direction: column;
+
+    .trailer-class{
+        width: 650px;
+        height: 350px;
+
+    }
+}
+
+@media screen and (max-width:900px) {
+    .show-img{
+        width: 55%;
+    }
+    .parts{
+        display: block;
+    }
+    .cast-list{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .trailers-part{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .trailer-class{
+        width: 350px !important;
+        height: 250px !important;
+
+    }
+}
+@media screen and (max-width:450px) {
+    .show-img{
+        width: 35%;
+    }
+    .parts{
+        display: block;
+    }
+    .cast-list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .trailers-part{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .trailer-class{
+        width: 250px;
+        height: 150px;
+
+    }
 }

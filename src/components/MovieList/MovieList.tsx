@@ -75,9 +75,9 @@ const MovieList: React.FC = () => {
     if (userId) {
       console.log(`Sending request to ${API_URL}/api/movies/watch-list with data:`, {
         userId: userId,
-        mediaId: movieToAdd.id
+        mediaId: movieToAdd.id,
       });
-      
+
       axios
         .post(
           `${API_URL}/api/movies/watch-list`,
@@ -117,7 +117,9 @@ const MovieList: React.FC = () => {
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
                 <p>{movie.title}</p>
               </Link>
-              <button onClick={(e) => addToWatchlist(e, movie)}>{movie.inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}</button>
+              <button className="add-list" onClick={(e) => addToWatchlist(e, movie)}>
+                {movie.inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
+              </button>
             </div>
           ))}
         </div>

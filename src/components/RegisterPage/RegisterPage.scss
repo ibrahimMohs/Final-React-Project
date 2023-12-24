@@ -44,3 +44,15 @@ $font-family:'DM Serif Display', serif;
   font-family: $font-family;
   color:#0958d9 !important;
 }
+
+@media screen and (max-width:1200px) {
+  .register-background {
+  display: none;
+  opacity: 100%;
+  }
+
+  .form-container{
+    background-color: #0958d9;
+  }
+
+}

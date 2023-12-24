@@ -1,10 +1,10 @@
+import '../TVShowsDetails/TVShowsDetail.scss';
 import { Link, useParams } from 'react-router-dom';
+import { apiKey } from '../../consts';
+import Animation from '../Animation/Animation';
 import CastDetails from '../CastDetails/CastDetails';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../TVShowsDetails/TVShowsDetail.scss';
-import Animation from '../Animation/Animation';
-import { apiKey } from '../../consts';
 
 interface TVShowDetailsProps {}
 
@@ -82,29 +82,27 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
           <h1>{tvShowDetails.name}</h1>
           <div className="parts">
             <div>
-
-            <img className="show-img" src={`https://image.tmdb.org/t/p/w500/${tvShowDetails.poster_path}`} alt={tvShowDetails.name} />
-            <h2>About:</h2>
+              <img className="show-img" src={`https://image.tmdb.org/t/p/w500/${tvShowDetails.poster_path}`} alt={tvShowDetails.name} />
+              <h2>About:</h2>
               <p>{tvShowDetails.overview}</p>
               <div>
                 <h2>Trailers:</h2>
                 <ul className="trailers-part">
                   {trailers.map((trailer) => (
                     <li key={trailer.id}>
-                      <iframe title="Trailer" width="560" height="315" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0"></iframe>
+                      <iframe className="trailer-class1" title="Trailer" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0"></iframe>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div>
-
+            <div className="about-actor">
               <div>
                 <h2>Genres:</h2>
                 <ul>
                   {tvShowDetails.genres.map((genre) => (
                     <li key={genre.id}>
-                    <Link to={`/genre/${genre.name}`}>{genre.name}</Link>
+                      <Link to={`/genre/${genre.name}`}>{genre.name}</Link>
                     </li>
                   ))}
                 </ul>
@@ -130,7 +128,6 @@ const TVShowsDetail: React.FC<TVShowDetailsProps> = () => {
                   ))}
                 </ul>
               </div>
-     
             </div>
           </div>
 

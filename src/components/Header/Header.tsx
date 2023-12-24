@@ -156,10 +156,10 @@ export const Header = (props: HeaderProps) => {
       </Button>
 
       <Drawer title="Menu" placement="right" closable={true} onClose={toggleDrawer} open={drawerVisible}>
-        <Menu theme="dark" mode="vertical" defaultSelectedKeys={['/']} className="header-menu" items={menuItems} />
+        <Menu onClick={onClick} theme="dark" mode="vertical" defaultSelectedKeys={['/']} className="header-menu" items={menuItems} />
       </Drawer>
 
-      <nav>
+      <nav className="menu-search">
         <Menu theme="dark" onClick={onClick} mode="horizontal" defaultSelectedKeys={['/']} className="header-menu" items={menuItems} />
 
         <div className="header-tools">
@@ -167,11 +167,6 @@ export const Header = (props: HeaderProps) => {
             <Input placeholder="Search" onPressEnter={(e) => onSearch(e.currentTarget.value)} onBlur={() => setSearchActive(false)} autoFocus />
           )}
           <SearchOutlined onClick={toggleSearch} className="icon search-icon" />
-          {props.userInfo && (
-            <Badge count={notificationCount}>
-              <BellOutlined className="icon notification-icon" />
-            </Badge>
-          )}
         </div>
       </nav>
     </header>

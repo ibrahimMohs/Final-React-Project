@@ -43,4 +43,24 @@ $font-family: 'Playfair Display', serif;
     }
   }
 
+  @media screen and ( max-width: 930px ) {
+    .tv-show-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media screen and ( max-width: 600px ) {
+    .tv-show-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media screen and ( max-width: 330px ) {
+    .tv-show-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   

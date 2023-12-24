@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { API_URL } from '../../consts';
+import React, { useEffect, useState } from 'react';
 
 type Movie = {
   id: number;
@@ -10,9 +10,15 @@ type Movie = {
 const parseJwt = (token: string) => {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join(''),
+  );
 
   return JSON.parse(jsonPayload);
 };
@@ -25,11 +31,11 @@ const Watchlist: React.FC = () => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (token) {
       const decodedToken = parseJwt(token);
-      setUserId(decodedToken.userId); 
+      setUserId(decodedToken.userId);
     }
   }, []);
 
-   const addToWatchlist = async (movieId: number) => {
+  const addToWatchlist = async (movieId: number) => {
     if (userId === null) {
       console.error('User ID is not available.');
       return;
@@ -40,7 +46,7 @@ const Watchlist: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
         },
         body: JSON.stringify({
           userId: userId,
@@ -69,7 +75,7 @@ const Watchlist: React.FC = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
         },
         body: JSON.stringify({
           userId: userId,
@@ -81,7 +87,7 @@ const Watchlist: React.FC = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      setWatchlist(watchlist.filter(movie => movie.id !== movieId));
+      setWatchlist(watchlist.filter((movie) => movie.id !== movieId));
     } catch (error) {
       console.error('Failed to remove movie from watchlist:', error);
     }
@@ -91,7 +97,7 @@ const Watchlist: React.FC = () => {
     <div>
       <h1>My Watchlist</h1>
       <ul>
-        {watchlist.map(movie => (
+        {watchlist.map((movie) => (
           <li key={movie.id}>
             {movie.title}
             <button onClick={() => removeFromWatchlist(movie.id)}>Remove</button>

@@ -15,11 +15,11 @@ a {
     justify-content: center;
   }
 
-  nav,
+  .menu-search,
   .header-menu {
-    flex-grow: 1;
-    flex-shrink: 0;
-    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: unset;
+    justify-content: unset;
   }
 
   .nav-link {
@@ -97,12 +97,10 @@ a {
   }
 }
 
-nav {
+.menu-search {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-left: auto !important;
-  margin-right: auto !important;
+
 
   ul {
     display: flex;

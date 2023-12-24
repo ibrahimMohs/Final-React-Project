@@ -67,7 +67,8 @@ $font-family: 'Playfair Display', serif;
         justify-content: center;
 
     .left-part{
-        display: grid;
+        display: flex;
+        flex-direction: column;
     }
   }
 }

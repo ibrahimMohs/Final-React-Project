@@ -98,7 +98,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
                 <ul className="trailers-part">
                   {trailers.map((trailer) => (
                     <li key={trailer.id}>
-                      <iframe title="Trailer" width="560" height="315" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0"></iframe>
+                      <iframe className="trailer-class" title="Trailer" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0"></iframe>
                     </li>
                   ))}
                 </ul>

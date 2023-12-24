@@ -7,8 +7,6 @@ $font-family:'DM Serif Display', serif;
   position: absolute;
   width: 1000px;
   height: 800px;
-  
-
 }
 .login-page {
   position: relative;
@@ -16,7 +14,8 @@ $font-family:'DM Serif Display', serif;
   margin-bottom: 100px;
   padding-right: 200px;
   font-size: medium;
-  h1{
+  
+  .welcome{
     font-family: $font-family;
     color:rgb(33 33 209);
     font-weight: bold;
@@ -168,5 +167,46 @@ hr {
   .forgot {
     font-size: 15px;
     color: #000 !important;
+  }
+}
+@media screen and (max-width:900px) {
+  .background {
+  display: none;
+  }
+
+  .login-page{
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0px;
+
+    .welcome{
+      color: black;
+      filter: drop-shadow(3px 3px 3px #2e2ecb);
+    }
+  }
+  .all-of-div{
+    background-color: #4278ae;
+  }
+}
+
+@media screen and (max-width:1550px) {
+  .background {
+  display: none;
+  }
+
+  .login-page{
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0px;
+
+    .welcome{
+      color: black;
+      filter: drop-shadow(3px 3px 3px #2e2ecb);
+    }
+  }
+  .all-of-div{
+    background-color: #4278ae;
   }
 }

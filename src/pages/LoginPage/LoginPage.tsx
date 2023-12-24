@@ -1,5 +1,6 @@
 import './LoginPage.scss';
 import 'animate.css';
+import { API_URL } from '../../consts';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from '@leecheuk/react-google-login';
@@ -8,7 +9,6 @@ import { User } from '../../models/user';
 import React, { useState } from 'react';
 import axios from 'axios';
 import background from '../../assets/images/bck.png';
-import { API_URL } from '../../consts';
 
 const loginUser = async (email: string, password: string) => {
   const response = await axios.post(`${API_URL}/api/movies/login`, { email, password });
@@ -18,13 +18,18 @@ const loginUser = async (email: string, password: string) => {
 function parseJwt(token: string) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join(''),
+  );
 
   return JSON.parse(jsonPayload);
 }
-
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
@@ -34,13 +39,12 @@ const LoginPage: React.FC<LoginPageProps> = ({ logInHandler }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-const onFinish = async (values: { username: string; password: string }) => {
-  console.log('Form submitted with values:', values); 
+  const onFinish = async (values: { username: string; password: string }) => {
+    console.log('Form submitted with values:', values);
     try {
       const token = await loginUser(values.username, values.password);
       if (token) {
         const tokenData = parseJwt(token);
-        console.log(tokenData);
         const storage = rememberMe ? localStorage : sessionStorage;
         storage.setItem('authToken', token);
         storage.setItem('userId', tokenData.Id);
@@ -52,12 +56,12 @@ const onFinish = async (values: { username: string; password: string }) => {
         navigate('/');
       }
     } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('Login failed:', error.response?.data);
-      // You can set the error message in state and display it in your UI
-    } else {
-      console.error('An unexpected error occurred:', error);
-    }
+      if (axios.isAxiosError(error)) {
+        console.error('Login failed:', error.response?.data);
+        // You can set the error message in state and display it in your UI
+      } else {
+        console.error('An unexpected error occurred:', error);
+      }
     }
   };
 
@@ -82,7 +86,7 @@ const onFinish = async (values: { username: string; password: string }) => {
         <img src={background} alt="background" className="background" />
         <div className="all-of-div">
           <div className="login-page">
-            <h1>
+            <h1 className="welcome">
               WELCOME TO <br /> MovieLand{' '}
             </h1>
             <h2>Login </h2>

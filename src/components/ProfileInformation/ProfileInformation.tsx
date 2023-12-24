@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Animation from '../Animation/Animation';
 import { API_URL } from '../../consts';
+import Animation from '../Animation/Animation';
+import React, { useEffect, useState } from 'react';
 
 type UserProfile = {
   name: string;
@@ -26,11 +26,18 @@ const ProfileInformation: React.FC = () => {
 
   // Function to parse the JWT and extract the payload
   const parseJwt = (token: string): JWTPayload => {
+    console.log('token', token);
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    var jsonPayload = decodeURIComponent(
+      window
+        .atob(base64)
+        .split('')
+        .map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join(''),
+    );
     return JSON.parse(jsonPayload);
   };
 
@@ -52,27 +59,26 @@ const ProfileInformation: React.FC = () => {
       setError('No authentication token found.');
     }
   }, []);
-  
 
   const fetchProfile = async (userId: string | number) => {
     try {
       setLoading(true);
       // Retrieve the JWT from storage, assuming it's saved under 'authToken'
       const token = sessionStorage.getItem('authToken');
-      
+
       // If there's no token, throw an error before making the fetch call
       if (!token) {
         throw new Error('No authentication token found.');
       }
-  
+
       const response = await fetch(`${API_URL}/api/movies/user/${userId}`, {
         headers: {
           'Content-Type': 'application/json',
           // Include the Authorization header with the token
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -80,27 +86,39 @@ const ProfileInformation: React.FC = () => {
       console.log(userProfile);
       setProfile(userProfile);
     } catch (err) {
-      console.error("An error occurred while fetching the profile:", err);
-      const message = err instanceof Error ? err.message : "An unknown error occurred";
+      console.error('An error occurred while fetching the profile:', err);
+      const message = err instanceof Error ? err.message : 'An unknown error occurred';
       setError(`Failed to load profile: ${message}`);
     } finally {
       setLoading(false);
     }
   };
-  
 
   // Render logic
-  if (isLoading) return <div><Animation /></div>;
+  if (isLoading)
+    return (
+      <div>
+        <Animation />
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
   if (!profile) return <div>No profile data.</div>;
 
   return (
     <div>
       <h1>Profile Information</h1>
-      <p><strong>Name:</strong> {profile.nickname}</p>
-      <p><strong>Email:</strong> {profile.email}</p>
-      <p><strong>Username:</strong> {profile.nickname}</p>
-      <p><strong>Phone Number:</strong> {profile.phone}</p>
+      <p>
+        <strong>Name:</strong> {profile.nickname}
+      </p>
+      <p>
+        <strong>Email:</strong> {profile.email}
+      </p>
+      <p>
+        <strong>Username:</strong> {profile.nickname}
+      </p>
+      <p>
+        <strong>Phone Number:</strong> {profile.phone}
+      </p>
     </div>
   );
 };

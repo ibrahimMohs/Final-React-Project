@@ -1,8 +1,8 @@
 $font-family:'DM Serif Display', serif;
 .container{
     position:relative; 
-    width: 1700px;
-    height: 720px;
+    // width: 1525x;
+    height: 655px;
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -148,4 +148,10 @@ $font-family:'DM Serif Display', serif;
 }
 subscribe-btn{
     color: black;
+}
+@media screen and ( max-width:900px) {
+    .container{
+        height: 1380px;
+    }
+    
 }

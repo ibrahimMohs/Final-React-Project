@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { API_URL } from '../../consts';
+import React, { useEffect, useState } from 'react';
 
 type MovieRating = {
   id: number;
@@ -9,13 +9,19 @@ type MovieRating = {
 };
 
 const parseJwt = (token: string) => {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-  
-    return JSON.parse(jsonPayload);
+      })
+      .join(''),
+  );
+
+  return JSON.parse(jsonPayload);
 };
 
 const MyRatings: React.FC = () => {
@@ -26,7 +32,7 @@ const MyRatings: React.FC = () => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (token) {
       const decodedToken = parseJwt(token);
-      setUserId(decodedToken.userId); 
+      setUserId(decodedToken.userId);
       fetchRatings(decodedToken.userId);
     }
   }, []);
@@ -38,7 +44,7 @@ const MyRatings: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
           // You may need to include authorization headers
-        }
+        },
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,7 +74,7 @@ const MyRatings: React.FC = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const newRating = await response.json();
-      setRatings(currentRatings => [...currentRatings, newRating]);
+      setRatings((currentRatings) => [...currentRatings, newRating]);
     } catch (error) {
       console.error('Failed to add rating:', error);
     }
@@ -92,9 +98,7 @@ const MyRatings: React.FC = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const updatedRating = await response.json();
-      setRatings(currentRatings =>
-        currentRatings.map(r => r.id === movieId ? { ...r, rating: newRating } : r)
-      );
+      setRatings((currentRatings) => currentRatings.map((r) => (r.id === movieId ? { ...r, rating: newRating } : r)));
     } catch (error) {
       console.error('Failed to update rating:', error);
     }
@@ -116,19 +120,17 @@ const MyRatings: React.FC = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      setRatings(currentRatings =>
-        currentRatings.filter(r => r.id !== movieId)
-      );
+      setRatings((currentRatings) => currentRatings.filter((r) => r.id !== movieId));
     } catch (error) {
       console.error('Failed to remove rating:', error);
     }
   };
-  
+
   return (
     <div>
       <h1>My Ratings</h1>
       <ul>
-        {ratings.map(movie => (
+        {ratings.map((movie) => (
           <li key={movie.id}>
             {movie.title} - {movie.rating} Stars
             <button onClick={() => updateRating(movie.id, 4)}>Update Rating</button>
