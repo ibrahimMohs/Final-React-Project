@@ -125,7 +125,7 @@ const GenreMovies: React.FC = () => {
       <ul className="genre">
         {movies.map((movie) => (
           <Link to={`/movies/${movie.id}`} key={movie.id} className="movie-item">
-            <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} style={{ width: '100px', height: '150px' }} />
+            <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} style={{ gap: '10 px' }} />
             <p>{movie.title}</p>
           </Link>
         ))}

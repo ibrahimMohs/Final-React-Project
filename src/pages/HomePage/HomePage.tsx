@@ -10,9 +10,7 @@ import axios from 'axios';
 interface Movie {
   id: number;
   title: string;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   backdrop_path?: string;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   vote_average: number;
   overview: string;
   poster_path?: string;
