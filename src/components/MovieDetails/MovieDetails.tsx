@@ -82,21 +82,36 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
     }
   };
 
+  console.log('trailers', trailers);
   return (
     <div className="movie-details">
       {movieDetails ? (
         <div>
           <h1>{movieDetails.title}</h1>
           <div className="parts">
-            <img className="movie-img" src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
             <div>
+              <img className="movie-img" src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
+              <h2>About:</h2>
               <p>{movieDetails.overview}</p>
-
+              <div>
+                <h2>Trailers:</h2>
+                <ul className="trailers-part">
+                  {trailers.map((trailer) => (
+                    <li key={trailer.id}>
+                      <iframe title="Trailer" width="560" height="315" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0"></iframe>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div>
               <div>
                 <h2>Genres:</h2>
                 <ul>
                   {movieDetails.genres.map((genre) => (
-                    <li key={genre.id}>{genre.name}</li>
+                    <li key={genre.id}>
+                      <Link to={`/genre/${genre.name}`}>{genre.name}</Link>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -118,19 +133,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
                 <ul>
                   {movieDetails.writers.map((writer) => (
                     <li key={writer.id}>{writer.name}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h2>Trailers:</h2>
-                <ul>
-                  {trailers.map((trailer) => (
-                    <li key={trailer.id}>
-                      <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" rel="noopener noreferrer">
-                        {trailer.name}
-                      </a>
-                    </li>
                   ))}
                 </ul>
               </div>

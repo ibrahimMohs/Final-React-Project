@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../models/user';
 import React, { useState } from 'react';
 import axios from 'axios';
-import background from '../../assets/images/mainphot.jpg';
+import background from '../../assets/images/bck.jpg';
 import { API_URL } from '../../consts';
 
 const loginUser = async (email: string, password: string) => {
@@ -24,6 +24,7 @@ function parseJwt(token: string) {
 
   return JSON.parse(jsonPayload);
 }
+
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
@@ -84,8 +85,8 @@ const onFinish = async (values: { username: string; password: string }) => {
             <h1>
               WELCOME TO <br /> MovieLand{' '}
             </h1>
-            <h2>Login</h2>
-            <div className="login-page-container">
+            <h2>Login </h2>
+            <div className="container">
               <Form
                 name="basic"
                 labelCol={{ span: 8 }}
