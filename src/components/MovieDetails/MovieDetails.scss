@@ -37,7 +37,7 @@ $font-family: 'Playfair Display', serif;
    
 }
 .movie-img{
-    width: 330px;
+    width: 300px;
 }
 .trailers-part{
     display: flex;
@@ -68,9 +68,8 @@ $font-family: 'Playfair Display', serif;
     }
     
     .trailer-class{
-        width: 350px !important;
+        width: 280px !important;
         height: 250px !important;
-
     }
 }
 @media screen and (max-width:450px) {
@@ -90,7 +89,7 @@ $font-family: 'Playfair Display', serif;
     }
     
     .trailer-class{
-        width: 250px;
+        width: 500px;
         height: 150px;
 
     }
