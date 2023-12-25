@@ -12,6 +12,7 @@ interface Movie {
   overview: string;
   poster_path: string;
   inWatchlist?: boolean;
+  rating?: number;
 }
 
 const MovieList: React.FC = () => {
@@ -96,6 +97,15 @@ const MovieList: React.FC = () => {
     }
   };
 
+  const handleRatingChange = (movieId: number, rating: number) => {
+    // Update the rating for the specified movie
+    const updatedMovies = movies.map(movie =>
+      movie.id === movieId ? { ...movie, rating: rating } : movie
+    );
+    setMovies(updatedMovies);
+  };
+  
+
   return (
     <>
       <div className="movie-list">
@@ -120,6 +130,22 @@ const MovieList: React.FC = () => {
               <button className="add-list" onClick={(e) => addToWatchlist(e, movie)}>
                 {movie.inWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
               </button>
+              {/* Rating part */}
+            <div className="movie-rating">
+              <label htmlFor={`rating-${movie.id}`}>Rating: </label>
+              <select
+                id={`rating-${movie.id}`}
+                value={movie.rating || 0}
+                onChange={(e) => handleRatingChange(movie.id, parseInt(e.target.value))}
+              >
+                <option value="0">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
             </div>
           ))}
         </div>
