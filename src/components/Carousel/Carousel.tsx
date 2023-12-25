@@ -43,11 +43,16 @@ const CarouselCustom: React.FC = () => {
 
   // This is an example of a handler for the mouse wheel event
   const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    event.preventDefault();
     event.deltaY > 0 ? carouselRef.current?.next() : carouselRef.current?.prev();
   };
 
   if (isLoading) {
-    return <div className="loading-container"><Animation /></div>;
+    return (
+      <div className="loading-container">
+        <Animation />
+      </div>
+    );
   }
 
   return (
@@ -56,13 +61,16 @@ const CarouselCustom: React.FC = () => {
         <Carousel afterChange={onChange} ref={carouselRef}>
           {latestMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
-              <div className="carousel-img"></div>
-              <img className="carousel-image" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
-              <div className="carousel-img"></div>
               <div className="about-movie-container">
-                <p>Title: {movie.title}</p>
-                <p>Rating: {movie.vote_average}</p>
-                <p>Overview: {movie.overview}</p>
+                <h2>{movie.title}</h2>
+                <div className="rating">
+                  <h3>Rating:</h3> {movie.vote_average}
+                </div>
+                <p>{movie.overview}</p>
+              </div>
+              <div className="img-wrapper">
+                <img className="carousel-image" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
+                <div className="img-gradient"></div>
               </div>
             </div>
           ))}

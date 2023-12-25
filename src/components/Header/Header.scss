@@ -5,10 +5,10 @@
   padding: 10px;
   background-color: #333;
   color: white;
-  
-a {
+
+  a {
     color: white !important;
-}
+  }
 
   .header-center {
     display: flex;
@@ -45,9 +45,11 @@ a {
     cursor: pointer;
     margin-left: 10px;
   }
+
   .icon:hover {
     background-color: violet;
   }
+
   .search-input {
     margin-left: 10px;
   }
@@ -89,10 +91,24 @@ a {
   @media screen and (max-width: 768px) {
     .header-drawer-button {
       display: block;
+      order: 1;
+    }
+
+    .menu-search {
+      margin-left: auto;
+      margin-right: 12px;
     }
 
     .header-menu {
       display: none;
+    }
+
+    padding: 10px 16px;
+
+    .header-logo {
+      img {
+        margin-left: 0;
+      }
     }
   }
 }
