@@ -216,7 +216,7 @@ const Register: React.FC = () => {
 
           <Form.Item
             name="nickname"
-            label="Nickname"
+            label="Username"
             tooltip="What do you want others to call you?"
             rules={[
               {

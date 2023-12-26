@@ -108,7 +108,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ logInHandler }) => {
                   name="password"
                   rules={[
                     { required: true, message: 'Please input your password!' },
-                    { min: 8, message: 'Password is shorter than 8 characters' },
+                    { min: 6, message: 'Password is shorter than 6 characters' },
                   ]}
                 >
                   <Input.Password />

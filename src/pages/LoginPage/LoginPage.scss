@@ -5,8 +5,8 @@ $font-family:'DM Serif Display', serif;
 }
 .background {
   position: absolute;
-  width: 1000px;
-  height: 800px;
+  width: 800px;
+  height: 720px;
 }
 .login-page {
   position: relative;
@@ -160,16 +160,16 @@ hr {
   justify-content: space-between;
   font-size: large;
 
+
   .remember{
-    width: 200px;
-    margin-top: 30px;
+    margin-top: 50px;
   }
   .forgot {
     font-size: 15px;
     color: #000 !important;
   }
 }
-@media screen and (max-width:900px) {
+@media screen and (max-width:800px) {
   .background {
   display: none;
   }
@@ -190,7 +190,7 @@ hr {
   }
 }
 
-@media screen and (max-width:1550px) {
+@media screen and (max-width:1312px) {
   .background {
   display: none;
   }

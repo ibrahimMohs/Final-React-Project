@@ -93,4 +93,21 @@ $font-family: 'Playfair Display', serif;
         height: 150px;
 
     }
+
+    .movie-details {
+        .cast-list {
+        margin: 0;
+        padding: 0 16px;
+        gap: 20px;
+        }
+
+        img {
+            width: 140px;
+        }
+
+        .trailers-part {
+            padding: 0;
+            list-style: none;
+        }
+    }
 }

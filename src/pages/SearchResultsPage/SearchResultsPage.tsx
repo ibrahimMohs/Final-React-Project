@@ -40,7 +40,7 @@ const SearchResultsPage: React.FC = () => {
       {results.map((result) => (
         <Link to={`/${result.media_type === 'movie' ? 'movies' : 'tv-shows'}/${result.id}`}>
           <h3>{result.title || result.name}</h3>
-          <img src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} alt={result.title || result.name} />
+          <img className="search-image" src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} alt={result.title || result.name} />
         </Link>
       ))}
     </div>

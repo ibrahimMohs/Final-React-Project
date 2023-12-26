@@ -57,8 +57,8 @@ const CarouselCustom: React.FC = () => {
 
   return (
     <div className="wrapper">
-      <div className="carousel-wrapper" onWheel={handleWheel}>
-        <Carousel afterChange={onChange} ref={carouselRef}>
+      <div className="carousel-wrapper">
+        <Carousel afterChange={onChange} ref={carouselRef} autoplay={true}>
           {latestMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
               <div className="about-movie-container">

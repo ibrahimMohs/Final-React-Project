@@ -1,4 +1,7 @@
 $font-family: 'Playfair Display', serif;
+.tvshow-details-all{
+    background-color: #222;
+
 .tvshow-details{
     font-family: $font-family;
     h1{
@@ -22,9 +25,6 @@ $font-family: 'Playfair Display', serif;
     height: 550px;
 }
 
-.tvshow-details-all{
-    background-color: #222;
-}
 .trailers-part{
     display: flex;
     gap: 20px;
@@ -68,4 +68,5 @@ $font-family: 'Playfair Display', serif;
         width: 250px;
         height: 150px;
     }
+}
 }

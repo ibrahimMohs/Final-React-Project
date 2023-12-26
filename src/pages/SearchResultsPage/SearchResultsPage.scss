@@ -1,13 +1,20 @@
 .search-main{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
     margin-left: 25px;
+    background-color: #222;
+
+    .search-image{
+        width: 80%
+    }
 }
 
 @media screen and (max-width: 900px) {
     .search-main{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
     }
     
 }
@@ -16,6 +23,7 @@
     .search-main{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
     }
     
 }

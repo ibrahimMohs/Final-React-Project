@@ -64,9 +64,10 @@ const CastDetails = () => {
             <p>Birthday: {castPersonalDetails.birthday}</p>
             <p>Place of Birth: {castPersonalDetails.place_of_birth}</p>
             <p>Known For: {castPersonalDetails.known_for_department}</p>
-            <p>Biography: {castPersonalDetails.biography}</p>
+            <p className="desktop-only">Biography: {castPersonalDetails.biography}</p>
             {/* Display other information as needed */}
           </div>
+            <p className="bio-text mobile-only">Biography: {castPersonalDetails.biography}</p>
         </div>
       )}
       <div className="movie-list-all">
